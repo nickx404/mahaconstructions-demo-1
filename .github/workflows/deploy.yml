@@ -28,7 +28,7 @@ jobs:
       - run: npm run build
       - name: Prepare client side routes
         run: |
-          for route in about about-2 contact gallery joint-venture projects projects/ongoing-project-1 projects/ongoing-project-2 projects/ongoing-project-3; do
+          for route in about about-2 about-us contact gallery joint-venture projects projects/ongoing-project-1 projects/ongoing-project-2 projects/ongoing-project-3; do
             mkdir -p "dist/$route"
             cp dist/index.html "dist/$route/index.html"
           done

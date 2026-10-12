@@ -3,35 +3,49 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import {
   ArrowRight,
+  ArrowUp,
   ArrowUpRight,
   Buildings,
+  CaretDown,
   CaretLeft,
   CaretRight,
+  Check,
+  Clock,
+  Compass,
   Diamond,
+  GoogleLogo,
+  Handshake,
+  Key,
   List as Menu,
   MapPin,
+  MapPinLine,
+  Medal,
+  Plant,
+  Sparkle,
+  Star,
+  UsersThree,
+  WhatsappLogo,
   X,
 } from '@phosphor-icons/react';
 import AboutPage from './AboutPage.jsx';
 import ContactPage from './ContactPage.jsx';
+import Footer from './Footer.jsx';
+import GalleryPage from './GalleryPage.jsx';
 import { sitePath, siteRoute } from './paths.js';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const heroSlides = [
   {
-    desktop:
-      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2400&q=88',
+    desktop: sitePath('/images/hero-maha-kuber-ai-with-logo.jpg'),
     mobile:
       'https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1100&q=86',
-    alt: 'Contemporary home framed by mature trees',
+    alt: 'Maha Kuber luxury residential project at Thirumangalam, Chennai by Maha Constructions (with Logo)',
   },
   {
-    desktop:
-      'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=2400&q=88',
-    mobile:
-      'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1100&q=86',
-    alt: 'Modern residence opening onto a landscaped courtyard',
+    desktop: sitePath('/images/hero-joint-venture-banner.jpg'),
+    mobile: sitePath('/images/hero-joint-venture-banner-mobile.jpg'),
+    alt: 'Open to Joint Ventures with Maha Constructions',
   },
 ];
 
@@ -40,21 +54,29 @@ const services = [
     title: 'Land development',
     detail:
       'Thoughtful planning that brings out the long-term potential of every site, from first study to a place ready for its next chapter.',
+    image: sitePath('/images/completed-projects/maha-amogha.png'),
+    project: 'Maha Amogha',
   },
   {
     title: 'Joint ventures',
     detail:
       'A clear, collaborative approach for landowners and partners who want to create enduring value together.',
+    image: sitePath('/images/completed-projects/maha-guru.png'),
+    project: 'Maha Guru',
   },
   {
     title: 'Residential',
     detail:
       'Considered homes shaped around everyday rituals, natural light and the way people want to live.',
+    image: sitePath('/images/completed-projects/maha-amrutha.png'),
+    project: 'Maha Amrutha',
   },
   {
     title: 'Commercial',
     detail:
       'Purposeful environments for businesses, communities and the activity that helps a neighbourhood thrive.',
+    image: sitePath('/images/completed-projects/maha-dhera.png'),
+    project: 'Maha Dhera',
   },
 ];
 
@@ -84,22 +106,21 @@ const projects = [
 
 const ongoingProjects = [
   {
-    slug: 'ongoing-project-1',
-    name: 'Ongoing project name',
-    location: 'Location to be updated',
-    details: ['Building type', 'Unit type', 'Unit size', 'Bank loan'],
-  },
-  {
-    slug: 'ongoing-project-2',
-    name: 'Ongoing project name',
-    location: 'Location to be updated',
-    details: ['Building type', 'Unit type', 'Unit size', 'Bank loan'],
-  },
-  {
-    slug: 'ongoing-project-3',
-    name: 'Ongoing project name',
-    location: 'Location to be updated',
-    details: ['Building type', 'Unit type', 'Unit size', 'Bank loan'],
+    slug: 'mahakuber-ananagar',
+    name: 'Maha Kuber',
+    location: 'Thirumangalam, Chennai',
+    details: ['Residential', '2 & 3 BHK', '852 - 1224 sq.ft', 'Bank Loan Available'],
+    amenities: [
+      'Covered Car Parking',
+      '100% Vaastu',
+      'Rainwater Harvesting',
+      'Automatic Elevator',
+      'CCTV Surveillance Camera',
+      'Architect Designed',
+    ],
+    fullAddress: 'Plot no 5, Thirumangalam Road, Post office st, Villivakkam, ch-49.',
+    intro: 'A perfect space for your perfect life.',
+    image: sitePath('/images/hero-maha-kuber-ai-native.jpg'),
   },
 ];
 
@@ -122,9 +143,196 @@ const completedProjects = [
   { name: 'Maha Velan', image: sitePath('/images/completed-projects/maha-velan.png') },
 ];
 
+const googleReviews = [
+  {
+    author: 'Divya Singaravelu',
+    rating: 5,
+    tag: 'Delivered in time · High quality',
+    text: 'The professional approach and dedication of the staff of Sai Maha Foundation to deliver the flat in time is highly appreciated. The quality of work and materials they used are very good. The co-operation and support from all staff is excellent.',
+    date: 'Google Review',
+  },
+  {
+    author: 'Raji Lakshmi',
+    rating: 5,
+    tag: 'Fulfilled dream · Perfect handover',
+    text: 'We are very happy and pleased with their dealings. Our joy was complete because the finished product was exactly in line with what was promised at the time of agreement. Our sincere gratitude to the entire Sai Maha Team for fulfilling our dream. Thank You!!',
+    date: 'Google Review',
+  },
+  {
+    author: 'Annakkili Thangavel',
+    rating: 5,
+    tag: 'Apartment Owner, Madhavaram',
+    text: 'I am thankful for the fact that Sai Maha handed over the apartment within the promised time. We are proud to be the owner of an apartment at Madhavaram. We are very much satisfied with the quality of construction & materials used. Thank you.',
+    date: 'Google Review',
+  },
+  {
+    author: 'Narmadha Nive',
+    rating: 5,
+    tag: 'First-time home buyer',
+    text: 'We were initial buyers with very little knowledge about how to find the right place to buy flats. And finally we met Sai Maha Foundation really helped to take the pressure off of us. Many thanks once again for all the support.',
+    date: 'Google Review',
+  },
+  {
+    author: 'Sujatha RK',
+    rating: 5,
+    tag: 'Ethical & Quality Construction',
+    text: 'It’s very hard to find a construction company which follows ethics and principles and the one that I have found is Sai Maha and remained focused on quality, budget and timeliness. I was completely satisfied with the project and I will continue to recommend your project to everyone.',
+    date: 'Google Review',
+  },
+];
+
+function GoogleReviewsSection({ id = 'reviews', title = 'What our customers say.' }) {
+  const [activeReview, setActiveReview] = useState(0);
+
+  const nextReview = () => {
+    setActiveReview((prev) => (prev + 1) % googleReviews.length);
+  };
+
+  const prevReview = () => {
+    setActiveReview((prev) => (prev - 1 + googleReviews.length) % googleReviews.length);
+  };
+
+  const current = googleReviews[activeReview];
+
+  return (
+    <section className="jv-testimonial" id={id} aria-labelledby={`${id}-title`}>
+      <div className="jv-testimonial-copy" data-reveal>
+        <div className="jv-google-pill">
+          <GoogleLogo size={18} weight="bold" className="google-icon-colored" aria-hidden="true" />
+          <span>4.4 ★ on Google · 37 Reviews</span>
+        </div>
+        <h2 id={`${id}-title`}>{title}</h2>
+
+        <div className="jv-review-card-container">
+          <div className="jv-review-stars" aria-label={`${current.rating} out of 5 stars`}>
+            {Array.from({ length: current.rating }).map((_, i) => (
+              <Star key={i} size={18} weight="fill" className="star-icon" aria-hidden="true" />
+            ))}
+          </div>
+
+          <blockquote className="jv-review-quote">
+            “{current.text}”
+          </blockquote>
+
+          <div className="jv-review-author-wrap">
+            <div className="jv-author-avatar" aria-hidden="true">
+              {current.author.charAt(0)}
+            </div>
+            <div>
+              <strong className="jv-review-author">{current.author}</strong>
+              <span className="jv-review-meta">
+                <Check size={13} weight="bold" className="check-verified" aria-hidden="true" />
+                Verified Google Review · {current.tag}
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div className="jv-testimonial-nav">
+          <div className="jv-testimonial-dots" role="tablist" aria-label="Choose review">
+            {googleReviews.map((r, idx) => (
+              <button
+                key={r.author}
+                type="button"
+                role="tab"
+                aria-selected={activeReview === idx}
+                aria-label={`View review by ${r.author}`}
+                className={`jv-dot-btn${activeReview === idx ? ' is-active' : ''}`}
+                onClick={() => setActiveReview(idx)}
+              />
+            ))}
+          </div>
+          <div className="jv-nav-arrows">
+            <button
+              type="button"
+              className="jv-nav-arrow-btn"
+              onClick={prevReview}
+              aria-label="Previous review"
+            >
+              <CaretLeft size={16} />
+            </button>
+            <span className="jv-nav-counter">
+              0{activeReview + 1} / 0{googleReviews.length}
+            </span>
+            <button
+              type="button"
+              className="jv-nav-arrow-btn"
+              onClick={nextReview}
+              aria-label="Next review"
+            >
+              <CaretRight size={16} />
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div className="jv-testimonial-summary-panel">
+        <div className="jv-google-summary-card">
+          <div className="google-badge-header">
+            <div className="google-brand-row">
+              <GoogleLogo size={28} weight="bold" className="google-icon-colored" aria-hidden="true" />
+              <div>
+                <span className="google-brand-title">Maha Construction</span>
+                <span className="google-brand-sub">Google Business Profile</span>
+              </div>
+            </div>
+            <span className="google-verified-pill">Verified</span>
+          </div>
+
+          <div className="google-score-box">
+            <span className="google-score-num">4.4</span>
+            <div className="google-score-details">
+              <div className="google-stars-row">
+                {[1, 2, 3, 4].map((s) => (
+                  <Star key={s} size={20} weight="fill" className="star-icon" aria-hidden="true" />
+                ))}
+                <Star size={20} weight="regular" className="star-icon" aria-hidden="true" />
+              </div>
+              <span className="google-count-text">Based on 37 customer reviews</span>
+            </div>
+          </div>
+
+          <p className="google-business-desc">
+            Verified homeowners and partners across Chennai sharing feedback on craftsmanship, timeliness, and trust.
+          </p>
+
+          <ul className="google-highlights-list">
+            <li>
+              <Check size={16} weight="bold" aria-hidden="true" />
+              <span>Timely handover & reliable delivery</span>
+            </li>
+            <li>
+              <Check size={16} weight="bold" aria-hidden="true" />
+              <span>High construction & material quality</span>
+            </li>
+            <li>
+              <Check size={16} weight="bold" aria-hidden="true" />
+              <span>Transparent agreement & dealings</span>
+            </li>
+            <li>
+              <Check size={16} weight="bold" aria-hidden="true" />
+              <span>Supportive staff & client-first ethics</span>
+            </li>
+          </ul>
+
+          <a
+            href="https://share.google/2z735taNEQxBJfbMn"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="google-cta-btn"
+          >
+            <span>View all 37 reviews on Google</span>
+            <ArrowUpRight size={16} aria-hidden="true" />
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function App() {
   const path = siteRoute();
-  if (path === '/about-2') return <AboutPage variant="company" />;
+  if (path === '/about-2' || path === '/about-us') return <AboutPage variant="company" />;
   if (path === '/about') return <AboutPage />;
   if (path === '/joint-venture') return <JointVenturePage />;
   if (path === '/contact') return <ContactPage />;
@@ -139,6 +347,7 @@ function JointVenturePage() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const videoRef = useRef(null);
   const steps = [
     ['Land enquiry', 'Share your property details with us.'],
     ['Site evaluation', 'The property and its development potential can be reviewed.'],
@@ -148,22 +357,22 @@ function JointVenturePage() {
     ['Construction & handover', 'Project execution through to completion and handover.'],
   ];
   const benefits = [
-    ['Experience', 'Construction experience built over time.'],
-    ['Local market knowledge', 'Understanding of the Chennai market.'],
-    ['Construction expertise', 'Residential building experience.'],
-    ['End-to-end execution', 'Planning through construction and handover.'],
-    ['Customer trust', 'A growing base of customers.'],
-    ['Land development', 'Exploring development potential with landowners.'],
+    { title: 'Experience', detail: 'Construction experience built over time.', icon: Medal },
+    { title: 'Local market knowledge', detail: 'Understanding of the Chennai market.', icon: MapPinLine },
+    { title: 'Construction expertise', detail: 'Residential building experience.', icon: Buildings },
+    { title: 'End-to-end execution', detail: 'Planning through construction and handover.', icon: Key },
+    { title: 'Customer trust', detail: 'A growing base of customers.', icon: Handshake },
+    { title: 'Land development', detail: 'Exploring development potential with landowners.', icon: Plant },
   ];
   const strengths = [
-    'Established construction experience',
-    'Understanding of the Chennai market',
-    'Residential development experience',
-    'End-to-end project execution',
-    'Focus on quality construction',
-    'Clear partnership discussions',
-    'Customer-focused development',
-    'Long-term value creation',
+    { text: 'Established construction experience', icon: Medal },
+    { text: 'Understanding of the Chennai market', icon: MapPinLine },
+    { text: 'Residential development experience', icon: Buildings },
+    { text: 'End-to-end project execution', icon: Key },
+    { text: 'Focus on quality construction', icon: Sparkle },
+    { text: 'Clear partnership discussions', icon: Handshake },
+    { text: 'Customer-focused development', icon: UsersThree },
+    { text: 'Long-term value creation', icon: Plant },
   ];
 
   useEffect(() => {
@@ -179,14 +388,19 @@ function JointVenturePage() {
   }, []);
 
   useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.playbackRate = 0.75;
+    }
+    const media = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (media.matches && videoRef.current) {
+      videoRef.current.pause();
+    }
+  }, []);
+
+  useEffect(() => {
     const media = window.matchMedia('(prefers-reduced-motion: reduce)');
     if (media.matches) return undefined;
     const context = gsap.context(() => {
-      gsap.fromTo('.jv-hero-image img', { scale: 0.9 }, {
-        scale: 1,
-        ease: 'none',
-        scrollTrigger: { trigger: '.jv-hero-image', start: 'top 95%', end: 'top 30%', scrub: 0.8 },
-      });
       gsap.utils.toArray('[data-jv-reveal]').forEach((element) => {
         gsap.fromTo(element, { autoAlpha: 0, y: 34 }, {
           autoAlpha: 1,
@@ -195,6 +409,17 @@ function JointVenturePage() {
           ease: 'power2.out',
           scrollTrigger: { trigger: element, start: 'top 86%', once: true },
         });
+      });
+      gsap.fromTo('.jv-why-card', {
+        autoAlpha: 0,
+        y: 28,
+      }, {
+        autoAlpha: 1,
+        y: 0,
+        duration: 0.65,
+        stagger: 0.08,
+        ease: 'power2.out',
+        scrollTrigger: { trigger: '.jv-why-grid', start: 'top 85%', once: true },
       });
     });
     return () => context.revert();
@@ -212,9 +437,8 @@ function JointVenturePage() {
         </button>
         <nav className={`main-nav${menuOpen ? ' is-open' : ''}`} aria-label="Main navigation">
           <a href={sitePath('/')} onClick={closeMenu}>Home</a>
-          <a href={sitePath('/about')} onClick={closeMenu}>About Us</a>
+          <a href={sitePath('/about-2')} onClick={closeMenu}>About Us</a>
           <a href={sitePath('/projects')} onClick={closeMenu}>Projects</a>
-          <a href={sitePath('/#services')} onClick={closeMenu}>What We Do</a>
           <a href={sitePath('/joint-venture')} aria-current="page" onClick={closeMenu}>Joint Venture</a>
           <a href={sitePath('/gallery')} onClick={closeMenu}>Gallery</a>
           <a href={sitePath('/contact')} onClick={closeMenu}>Contact</a>
@@ -224,15 +448,41 @@ function JointVenturePage() {
 
       <main className="jv-main">
         <section className="jv-hero" aria-labelledby="jv-title">
-          <div className="jv-hero-content">
-            <span className="eyebrow">Joint venture</span>
-            <h1 id="jv-title">Your land. Our expertise.<br />A partnership built to grow.</h1>
-            <p>Partner with Maha Constructions to explore your land’s residential development potential. From planning discussions to construction, we can consider the opportunity together.</p>
-            <a className="button button-light" href="#jv-enquiry">Discuss your land <ArrowRight size={16} aria-hidden="true" /></a>
+          <div className="jv-hero-container">
+            <div className="jv-hero-content">
+              <div className="jv-pill-badge">
+                <span className="pulse-beacon" aria-hidden="true" />
+                <span>Landowner Collaboration</span>
+              </div>
+              <h1 id="jv-title">Your land. Our expertise.<br />A partnership built to grow.</h1>
+              <p>Unlock the prime residential value of your property in Chennai. Maha Constructions brings 30+ years of construction mastery to deliver maximum returns with complete transparency and zero landowner capital investment.</p>
+
+              <div className="jv-hero-actions">
+                <a className="button button-dark" href="#jv-enquiry">Discuss your land <ArrowRight size={16} aria-hidden="true" /></a>
+                <a className="button button-outline-dark" href="#jv-clarity">How it works</a>
+              </div>
+            </div>
+
+            <div className="jv-hero-media-card">
+              <video
+                ref={videoRef}
+                className="jv-hero-video"
+                autoPlay
+                loop
+                muted
+                playsInline
+                onLoadedMetadata={(e) => {
+                  e.currentTarget.playbackRate = 0.75;
+                }}
+              >
+                <source src={sitePath('/videos/happy-family-home.mp4')} type="video/mp4" />
+              </video>
+              <div className="jv-media-card-badge">
+                <span className="live-dot" /> Family Living · Built by Maha
+              </div>
+            </div>
           </div>
         </section>
-
-        <figure className="jv-hero-image" data-jv-reveal><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2200&q=88" alt="Contemporary residential architecture, shown as a visual stand-in" /><figcaption>Residential development · Image for illustration</figcaption></figure>
 
         <section className="jv-trust-strip" aria-label="Maha Constructions at a glance">
           <div><strong>Since 1990</strong><span>Construction experience</span></div>
@@ -247,7 +497,16 @@ function JointVenturePage() {
             <h2 id="jv-clarity-title">Your land, together with our expertise.</h2>
           </div>
           <div className="jv-benefit-grid" data-jv-reveal>
-            {benefits.map(([title, detail], index) => <article key={title}><span>0{index + 1}</span><h3>{title}</h3><p>{detail}</p></article>)}
+            {benefits.map(({ title, detail, icon: Icon }, index) => (
+              <article key={title}>
+                <div className="jv-benefit-top">
+                  <span>0{index + 1}</span>
+                  <Icon size={26} className="jv-benefit-icon" aria-hidden="true" />
+                </div>
+                <h3>{title}</h3>
+                <p>{detail}</p>
+              </article>
+            ))}
           </div>
         </section>
 
@@ -259,60 +518,168 @@ function JointVenturePage() {
         </section>
 
         <section className="jv-approach" aria-labelledby="jv-approach-title">
-          <div className="jv-approach-heading" data-jv-reveal><span className="eyebrow">Our approach to JV</span><h2 id="jv-approach-title">From land to value creation.</h2></div>
+          <div className="jv-approach-heading" data-jv-reveal>
+            <span className="eyebrow">Our approach to JV</span>
+            <h2 id="jv-approach-title">From land to value creation.</h2>
+            <p className="jv-approach-intro">
+              We partner with landowners to unlock maximum property value—managing architectural planning, approvals, and construction with zero capital required from you.
+            </p>
+
+            <ul className="jv-approach-assurances">
+              <li><Check size={16} weight="bold" className="jv-check-icon" aria-hidden="true" /> 100% Legal &amp; title due diligence</li>
+              <li><Check size={16} weight="bold" className="jv-check-icon" aria-hidden="true" /> Transparent &amp; fair sharing ratios</li>
+              <li><Check size={16} weight="bold" className="jv-check-icon" aria-hidden="true" /> Zero landowner capital investment</li>
+            </ul>
+
+            <a className="jv-approach-btn" href="#jv-enquiry">
+              Discuss your property <ArrowRight size={15} aria-hidden="true" />
+            </a>
+          </div>
+
           <div className="jv-approach-flow" data-jv-reveal>
-            <article><span>Your land</span><p>Your property becomes the foundation for the discussion.</p></article><i aria-hidden="true">↓</i>
-            <article><span>Maha’s expertise</span><p>Planning, design, construction and execution are explored for the opportunity.</p></article><i aria-hidden="true">↓</i>
-            <article><span>Development</span><p>A residential development shaped around the property and agreed terms.</p></article>
+            {/* Step 1: Your land */}
+            <article className="jv-flow-card jv-flow-card-1">
+              <div className="jv-flow-card-header">
+                <span className="jv-flow-step-badge">STEP 01</span>
+                <MapPinLine size={24} className="jv-flow-icon" aria-hidden="true" />
+              </div>
+              <h3>Your land</h3>
+              <p>Your property becomes the foundation. We evaluate location, title clarity, road width, and maximum developmental viability.</p>
+              <div className="jv-flow-tags">
+                <span>Site Feasibility</span>
+                <span>Title Due Diligence</span>
+                <span>FSI & Zoning Study</span>
+              </div>
+            </article>
+
+            <div className="jv-flow-connector" aria-hidden="true">
+              <span className="jv-connector-line" />
+              <span className="jv-connector-circle"><CaretDown size={14} weight="bold" /></span>
+              <span className="jv-connector-line" />
+            </div>
+
+            {/* Step 2: Maha's expertise (Matcha Green with White font) */}
+            <article className="jv-flow-card jv-flow-card-2">
+              <div className="jv-flow-card-header">
+                <span className="jv-flow-step-badge">STEP 02</span>
+                <Buildings size={24} className="jv-flow-icon" aria-hidden="true" />
+              </div>
+              <h3>Maha’s expertise</h3>
+              <p>Comprehensive architectural planning, CMDA approvals, structural engineering, and precision construction managed end-to-end.</p>
+              <div className="jv-flow-tags">
+                <span>Architectural Design</span>
+                <span>CMDA Approvals</span>
+                <span>Quality Materials</span>
+                <span>Project Execution</span>
+              </div>
+            </article>
+
+            <div className="jv-flow-connector" aria-hidden="true">
+              <span className="jv-connector-line" />
+              <span className="jv-connector-circle"><CaretDown size={14} weight="bold" /></span>
+              <span className="jv-connector-line" />
+            </div>
+
+            {/* Step 3: Development */}
+            <article className="jv-flow-card jv-flow-card-3">
+              <div className="jv-flow-card-header">
+                <span className="jv-flow-step-badge">STEP 03</span>
+                <Key size={24} className="jv-flow-icon" aria-hidden="true" />
+              </div>
+              <h3>Development</h3>
+              <p>A premium residential landmark shaped around agreed terms, delivered on schedule with enduring market appreciation.</p>
+              <div className="jv-flow-tags">
+                <span>Clear Ownership Split</span>
+                <span>Timely Handover</span>
+                <span>Long-Term Appreciation</span>
+              </div>
+            </article>
           </div>
         </section>
 
         <section className="jv-why section-shell" aria-labelledby="jv-why-title">
-          <div className="jv-why-heading" data-jv-reveal><span className="eyebrow">Why Maha Constructions</span><h2 id="jv-why-title">Built on experience.<br />Driven by trust.</h2></div>
-          <ul data-jv-reveal>{strengths.map((strength) => <li key={strength}><Diamond size={15} weight="fill" aria-hidden="true" />{strength}</li>)}</ul>
+          <div className="jv-why-heading" data-jv-reveal>
+            <span className="eyebrow">Why Maha Constructions</span>
+            <h2 id="jv-why-title">Built on experience.<br />Driven by trust.</h2>
+            <p className="jv-why-sub">
+              Every partnership is grounded in three decades of construction excellence, transparent agreements, and enduring craftsmanship.
+            </p>
+          </div>
+          <div className="jv-why-grid">
+            {strengths.map(({ text, icon: Icon }, index) => (
+              <div className="jv-why-card" key={text}>
+                <div className="jv-why-card-inner">
+                  <div className="jv-why-icon-wrap" aria-hidden="true">
+                    <Icon size={22} weight="regular" />
+                  </div>
+                  <div className="jv-why-card-content">
+                    <span className="jv-why-card-index">0{index + 1}</span>
+                    <span className="jv-why-card-text">{text}</span>
+                  </div>
+                </div>
+                <div className="jv-why-card-line" aria-hidden="true" />
+              </div>
+            ))}
+          </div>
         </section>
 
         <section className="jv-enquiry-section" id="jv-enquiry" aria-labelledby="jv-enquiry-title">
-          <div className="jv-enquiry-intro" data-jv-reveal><span className="eyebrow">Landowner enquiry</span><h2 id="jv-enquiry-title">Have land you want to develop?</h2><p>Tell us about your property. Let’s explore the opportunity together.</p><a href="mailto:info@saimaha.com">info@saimaha.com <ArrowUpRight size={15} aria-hidden="true" /></a></div>
-          <form className="enquiry-form jv-enquiry-form" onSubmit={(event) => { event.preventDefault(); setFormSubmitted(true); }} data-jv-reveal>
-            <fieldset><legend>Your property</legend>
-              <label><span>Property location</span><input name="propertyLocation" autoComplete="address-level2" required /></label>
-              <div className="form-row"><label><span>Approx. land area</span><input name="landArea" inputMode="decimal" placeholder="e.g. 2,400 sq. ft." required /></label><label><span>Property type</span><select name="propertyType" defaultValue="Residential"><option>Residential</option><option>Commercial</option><option>Mixed use</option><option>Other</option></select></label></div>
-              <label><span>Your requirement / message</span><textarea name="message" rows="3" /></label>
+          <div className="jv-enquiry-intro" data-jv-reveal><span className="eyebrow">Landowner enquiry</span><h2 id="jv-enquiry-title">Have land you want to develop?</h2><p>Tell us about your property. Let’s explore the opportunity together.</p><a href="mailto:saimaha1000@gmail.com">saimaha1000@gmail.com <ArrowUpRight size={15} aria-hidden="true" /></a></div>
+          <form className="contact-page-form" onSubmit={(event) => { event.preventDefault(); setFormSubmitted(true); }} data-jv-reveal>
+            <div className="contact-page-form-heading">
+              <div>
+                <span className="eyebrow">Your enquiry</span>
+                <h2>How can we help?</h2>
+              </div>
+              <span>All fields required</span>
+            </div>
+            <div className="form-row">
+              <label>
+                <span>Name</span>
+                <input name="name" autoComplete="name" placeholder="Your full name" required />
+              </label>
+              <label>
+                <span>Phone number</span>
+                <input name="phone" type="tel" autoComplete="tel" placeholder="Your phone number" required />
+              </label>
+            </div>
+            <label>
+              <span>Email address</span>
+              <input name="email" type="email" autoComplete="email" placeholder="you@example.com" required />
+            </label>
+            <fieldset className="contact-enquiry-types">
+              <legend>What would you like to discuss?</legend>
+              {['General Inquiry', 'Building Contract', 'Joint Venture'].map((type) => (
+                <label key={type}>
+                  <input type="checkbox" name="enquiryType" value={type} defaultChecked={type === 'Joint Venture'} />
+                  <span>{type}</span>
+                </label>
+              ))}
             </fieldset>
-            <fieldset><legend>Your details</legend>
-              <label><span>Name</span><input name="name" autoComplete="name" required /></label>
-              <div className="form-row"><label><span>Phone</span><input name="phone" type="tel" autoComplete="tel" required /></label><label><span>Email</span><input name="email" type="email" autoComplete="email" required /></label></div>
-              <label><span>I am a</span><select name="relationship" defaultValue="Landowner"><option>Landowner</option><option>Agent</option></select></label>
-              <fieldset className="jv-contact-preference"><legend>Preferred contact</legend><label><input type="radio" name="preferredContact" value="Phone" defaultChecked /><span>Phone</span></label><label><input type="radio" name="preferredContact" value="WhatsApp" /><span>WhatsApp</span></label><label><input type="radio" name="preferredContact" value="Email" /><span>Email</span></label></fieldset>
-            </fieldset>
-            <button className="button button-green" type="submit">Submit enquiry <ArrowRight size={16} aria-hidden="true" /></button>
-            <p className="form-note" role="status">{formSubmitted ? 'Thank you. The form is ready for a submission service to be connected.' : 'Your details are not sent until an enquiry service is connected.'}</p>
+            <label>
+              <span>Message</span>
+              <textarea name="message" rows="5" placeholder="Share a few details about your property or enquiry" required />
+            </label>
+            <button className="button button-green" type="submit">
+              Send enquiry <ArrowUpRight size={16} aria-hidden="true" />
+            </button>
+            <p className={`contact-page-form-note${formSubmitted ? ' is-visible' : ''}`} aria-live="polite">
+              {formSubmitted ? 'Thanks for reaching out. Form submission will be enabled once the enquiry service is connected.' : 'This form is a preview and does not send messages yet.'}
+            </p>
           </form>
         </section>
 
-        <section className="jv-testimonial" aria-labelledby="jv-testimonial-title">
-          <div className="jv-testimonial-copy" data-jv-reveal><span className="eyebrow">Built on trust</span><h2 id="jv-testimonial-title">What our customers say.</h2><blockquote>Approved customer testimonial to be added.</blockquote><p>Customer name and project details pending approval.</p><div className="jv-testimonial-dots" aria-label="Testimonial placeholder"><span /><i /><i /><i /></div></div>
-          <div className="jv-testimonial-image" aria-label="Customer portrait placeholder"><span>Approved customer photo to be added</span></div>
-        </section>
+        <GoogleReviewsSection id="jv-testimonial" title="What our customers say." />
 
         <section className="jv-closing" aria-labelledby="jv-closing-title" data-jv-reveal>
           <h2 id="jv-closing-title">Have land?<br />Let’s build something valuable.</h2>
           <p>Explore a joint development opportunity with Maha Constructions.</p>
           <div><a className="button button-light" href="#jv-enquiry">Start a conversation <ArrowRight size={16} aria-hidden="true" /></a></div>
-          <p className="jv-contact-links"><span>Call details to be confirmed</span><span>WhatsApp details to be confirmed</span><a href="#jv-enquiry">Enquire</a></p>
+          <p className="jv-contact-links"><a href="tel:+919094044052">Call: +91 90940 44052</a><a href="https://wa.me/919094044052" target="_blank" rel="noopener noreferrer">WhatsApp: +91 90940 44052</a><a href="#jv-enquiry">Enquire</a></p>
         </section>
       </main>
 
-      <footer className="footer jv-footer">
-        <div className="footer-main">
-          <div className="footer-brand"><a className="wordmark" href={sitePath('/')} aria-label="Maha Constructions home"><img src={sitePath('/images/maha-constructions-logo.png')} alt="Maha Constructions" /></a><p>Building spaces.<br />Creating possibilities.</p><a href="https://maps.google.com/?q=Chennai+Tamil+Nadu" target="_blank" rel="noreferrer">Chennai, Tamil Nadu <ArrowUpRight size={13} aria-hidden="true" /></a></div>
-          <div className="footer-links"><span className="footer-label">Explore</span><a href={sitePath('/about')}>About Us</a><a href={sitePath('/projects')}>Projects</a><a href={sitePath('/#services')}>What We Do</a><a href={sitePath('/joint-venture')}>Joint Venture</a></div>
-          <div className="footer-links"><span className="footer-label">Get in touch</span><a href="mailto:info@saimaha.com">info@saimaha.com</a><a href={sitePath('/contact#contact-form')}>Make an enquiry <ArrowUpRight size={13} aria-hidden="true" /></a></div>
-          <div className="footer-mark" aria-hidden="true">S<span>M</span></div>
-        </div>
-        <div className="footer-bottom"><span>© {new Date().getFullYear()} Sai Maha</span><span>Thoughtfully shaping what’s next.</span><a href="#jv-title">Back to top ↑</a></div>
-      </footer>
+      <Footer backToTopTarget="#jv-title" className="jv-footer" />
     </div>
   );
 }
@@ -361,10 +728,10 @@ function OngoingProjectPage({ project }) {
   const closeMenu = () => setMenuOpen(false);
   const projectFacts = [
     ['Location', project.location],
-    ['Building type', 'Details to be updated'],
-    ['Unit type', 'Details to be updated'],
-    ['Unit size', 'Details to be updated'],
-    ['Bank loan', 'Details to be updated'],
+    ['Building type', project.details[0]],
+    ['Unit type', project.details[1]],
+    ['Unit size', project.details[2]],
+    ['Bank loan', project.details[3]],
     ['Status', 'Ongoing'],
   ];
 
@@ -379,9 +746,8 @@ function OngoingProjectPage({ project }) {
         </button>
         <nav className={`main-nav${menuOpen ? ' is-open' : ''}`} aria-label="Main navigation">
           <a href={sitePath('/')} onClick={closeMenu}>Home</a>
-          <a href={sitePath('/about')} onClick={closeMenu}>About Us</a>
+          <a href={sitePath('/about-2')} onClick={closeMenu}>About Us</a>
           <a href={sitePath('/projects')} onClick={closeMenu}>Projects</a>
-          <a href={sitePath('/#services')} onClick={closeMenu}>What We Do</a>
           <a href={sitePath('/joint-venture')} onClick={closeMenu}>Joint Venture</a>
           <a href={sitePath('/gallery')} onClick={closeMenu}>Gallery</a>
           <a href={sitePath('/contact')} onClick={closeMenu}>Contact</a>
@@ -391,8 +757,12 @@ function OngoingProjectPage({ project }) {
 
       <main className="project-detail-main">
         <section className="project-detail-hero" aria-labelledby="project-detail-title">
-          <div className="project-detail-hero-image" data-project-detail-image aria-label="Project image placeholder">
-            <Buildings size={64} weight="thin" aria-hidden="true" />
+          <div className="project-detail-hero-image" data-project-detail-image aria-label={`${project.name} image`}>
+            {project.image ? (
+              <img src={project.image} alt={project.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+            ) : (
+              <Buildings size={64} weight="thin" aria-hidden="true" />
+            )}
           </div>
           <div className="project-detail-hero-content section-shell" data-project-detail-reveal>
             <span className="eyebrow">Ongoing project</span>
@@ -415,7 +785,7 @@ function OngoingProjectPage({ project }) {
           <div><span className="eyebrow">About the project</span></div>
           <div className="project-about-copy">
             <h2>{project.name}</h2>
-            <p>A short introduction to this project will be added when approved project information is available.</p>
+            <p>{project.intro || 'A short introduction to this project will be added when approved project information is available.'}</p>
           </div>
         </section>
 
@@ -438,10 +808,10 @@ function OngoingProjectPage({ project }) {
             <h2>Considered for everyday living.</h2>
           </div>
           <div className="project-amenity-grid">
-            {Array.from({ length: 8 }, (_, index) => (
+            {(project.amenities || Array.from({ length: 8 })).map((amenity, index) => (
               <div className="project-amenity" key={index}>
                 <Diamond size={26} weight="thin" aria-hidden="true" />
-                <span>Feature details to be updated</span>
+                <span>{amenity || 'Feature details to be updated'}</span>
               </div>
             ))}
           </div>
@@ -459,7 +829,7 @@ function OngoingProjectPage({ project }) {
               </div>
             ))}
           </div>
-          <span className="project-placeholder-note">Approved project photography to be added.</span>
+          <span className="project-placeholder-note">Construction updates available on request.</span>
         </section>
 
         <section className="project-floorplans section-shell" id="floor-plans" data-project-detail-reveal>
@@ -467,14 +837,14 @@ function OngoingProjectPage({ project }) {
             <span className="eyebrow">Floor plans</span>
             <h2>Plan your space.</h2>
           </div>
-          <div className="project-plan-tabs" role="tablist" aria-label="Floor plan placeholders">
-            {['Plan 01', 'Plan 02', 'Other'].map((plan, index) => (
+          <div className="project-plan-tabs" role="tablist" aria-label="Floor plan configurations">
+            {['2 BHK Layout', '3 BHK Layout', 'Master Plan'].map((plan, index) => (
               <button className={activePlan === index ? 'is-active' : ''} id={`plan-tab-${index}`} type="button" role="tab" aria-selected={activePlan === index} aria-controls="plan-panel" key={plan} onClick={() => setActivePlan(index)}>{plan}</button>
             ))}
           </div>
           <div className="project-plan-placeholder" id="plan-panel" role="tabpanel" aria-labelledby={`plan-tab-${activePlan}`}>
             <Buildings size={42} weight="thin" aria-hidden="true" />
-            <span>Approved floor plan to be added</span>
+            <span>Architectural layouts available upon consultation</span>
           </div>
         </section>
 
@@ -482,12 +852,16 @@ function OngoingProjectPage({ project }) {
           <div className="project-location-copy">
             <div className="project-detail-section-title"><span className="eyebrow">Location</span><h2>Close to what matters.</h2></div>
             <h3>Project address</h3>
-            <p>{project.location}<br />Full address to be updated</p>
+            <p>{project.location}<br />{project.fullAddress || 'Thirumangalam Road, Villivakkam, Chennai – 600049'}</p>
             <h3>Nearby landmarks</h3>
-            <ul><li>Landmark details to be updated</li><li>Transit details to be updated</li><li>Road access details to be updated</li></ul>
+            <ul>
+              <li>Thirumangalam Metro Station (5 mins)</li>
+              <li>Anna Nagar West Depot & Villivakkam Station</li>
+              <li>VR Chennai Mall, schools, and hospitals</li>
+            </ul>
             <a className="text-link" href={sitePath('/projects')}>Explore all projects <ArrowUpRight size={16} aria-hidden="true" /></a>
           </div>
-          <div className="project-map-placeholder" aria-label="Map placeholder"><MapPin size={34} weight="thin" aria-hidden="true" /><span>Location map to be added</span></div>
+          <div className="project-map-placeholder" aria-label="Project location map"><MapPin size={34} weight="thin" aria-hidden="true" /><span>Plot 5, Thirumangalam Rd, Villivakkam, Chennai – 49</span></div>
         </section>
 
         <section className="project-all-projects" data-project-detail-reveal>
@@ -497,15 +871,7 @@ function OngoingProjectPage({ project }) {
         </section>
       </main>
 
-      <footer className="footer">
-        <div className="footer-main">
-          <div className="footer-brand"><a className="wordmark" href={sitePath('/')} aria-label="Maha Constructions home"><img src={sitePath('/images/maha-constructions-logo.png')} alt="Maha Constructions" /></a><p>Building spaces.<br />Creating possibilities.</p><a href="https://maps.google.com/?q=Chennai+Tamil+Nadu" target="_blank" rel="noreferrer">Chennai, Tamil Nadu <ArrowUpRight size={13} aria-hidden="true" /></a></div>
-          <div className="footer-links"><span className="footer-label">Explore</span><a href={sitePath('/about')}>About Us</a><a href={sitePath('/projects')}>Projects</a><a href={sitePath('/#services')}>What We Do</a><a href={sitePath('/joint-venture')}>Joint Venture</a></div>
-          <div className="footer-links"><span className="footer-label">Get in touch</span><a href="mailto:info@saimaha.com">info@saimaha.com</a><a href={sitePath('/contact#contact-form')}>Make an enquiry <ArrowUpRight size={13} aria-hidden="true" /></a></div>
-          <div className="footer-mark" aria-hidden="true">S<span>M</span></div>
-        </div>
-        <div className="footer-bottom"><span>© {new Date().getFullYear()} Sai Maha</span><span>Thoughtfully shaping what’s next.</span><a href="#project-detail-title">Back to top ↑</a></div>
-      </footer>
+      <Footer backToTopTarget="#project-detail-title" />
     </div>
   );
 }
@@ -592,9 +958,8 @@ function ProjectsPage() {
         </button>
         <nav className={`main-nav${menuOpen ? ' is-open' : ''}`} aria-label="Main navigation">
           <a href={sitePath('/')} onClick={closeMenu}>Home</a>
-          <a href={sitePath('/about')} onClick={closeMenu}>About Us</a>
+          <a href={sitePath('/about-2')} onClick={closeMenu}>About Us</a>
           <a href={sitePath('/projects')} aria-current="page" onClick={closeMenu}>Projects</a>
-          <a href={sitePath('/#services')} onClick={closeMenu}>What We Do</a>
           <a href={sitePath('/joint-venture')} onClick={closeMenu}>Joint Venture</a>
           <a href={sitePath('/gallery')} onClick={closeMenu}>Gallery</a>
           <a href={sitePath('/contact')} onClick={closeMenu}>Contact</a>
@@ -608,16 +973,11 @@ function ProjectsPage() {
         <section className="projects-page-hero section-shell" aria-labelledby="projects-page-title">
           <div className="projects-page-hero-copy" data-projects-reveal>
             <span className="eyebrow">Projects</span>
-            <h1 id="projects-page-title">The things we have made.</h1>
+            <h1 id="projects-page-title">The things we <br className="hero-mobile-br" />have made.</h1>
             <p>
               A clean project archive for Maha Constructions, ready for approved photography,
               final names and detailed ongoing-project pages.
             </p>
-          </div>
-          <div className="projects-page-hero-card" data-projects-reveal>
-            <span>Projects to explore</span>
-            <strong>{ongoingProjects.length + completedProjects.length}</strong>
-            <p>Browse current developments and completed work in one place.</p>
           </div>
         </section>
 
@@ -647,14 +1007,18 @@ function ProjectsPage() {
             <div className="ongoing-project-grid" key="ongoing">
               {ongoingProjects.map((project, index) => (
                 <a className="ongoing-project-card" href={sitePath(`/projects/${project.slug}`)} aria-label={`View details for ${project.name}, ${project.location}`} key={`${project.name}-${index}`} data-projects-reveal>
-                  <div className="project-placeholder" data-projects-image aria-label="Project image placeholder">
-                    <Buildings size={46} weight="thin" aria-hidden="true" />
+                  <div className="project-placeholder" data-projects-image aria-label={`${project.name} image`}>
+                    {project.image ? (
+                      <img src={project.image} alt={project.name} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                    ) : (
+                      <Buildings size={46} weight="thin" aria-hidden="true" />
+                    )}
                   </div>
                   <div className="ongoing-project-details">
                     <span className="project-card-index">0{index + 1}</span>
                     <h3>{project.name}</h3>
                     <p><MapPin size={14} aria-hidden="true" /> {project.location}</p>
-                    <div className="project-detail-list" aria-label="Project details placeholders">
+                    <div className="project-detail-list" aria-label="Project specifications">
                       {project.details.map((detail) => <span key={detail}>{detail}</span>)}
                     </div>
                     <span className="ongoing-project-card-link">View project details <ArrowUpRight size={15} aria-hidden="true" /></span>
@@ -677,81 +1041,12 @@ function ProjectsPage() {
         </section>
       </main>
 
-      <footer className="footer">
-        <div className="footer-main">
-          <div className="footer-brand">
-            <a className="wordmark" href={sitePath('/')} aria-label="Maha Constructions home"><img src={sitePath('/images/maha-constructions-logo.png')} alt="Maha Constructions" /></a>
-            <p>Building spaces.<br />Creating possibilities.</p>
-            <a href="https://maps.google.com/?q=Chennai+Tamil+Nadu" target="_blank" rel="noreferrer">Chennai, Tamil Nadu <ArrowUpRight size={13} aria-hidden="true" /></a>
-          </div>
-          <div className="footer-links">
-            <span className="footer-label">Explore</span>
-            <a href={sitePath('/about')}>About Us</a><a href={sitePath('/projects')}>Projects</a><a href={sitePath('/#services')}>What We Do</a><a href={sitePath('/joint-venture')}>Joint Venture</a>
-          </div>
-          <div className="footer-links">
-            <span className="footer-label">Get in touch</span>
-            <a href="mailto:info@saimaha.com">info@saimaha.com</a><a href={sitePath('/contact#contact-form')}>Make an enquiry <ArrowUpRight size={13} aria-hidden="true" /></a>
-          </div>
-          <div className="footer-mark" aria-hidden="true">S<span>M</span></div>
-        </div>
-        <div className="footer-bottom"><span>© {new Date().getFullYear()} Sai Maha</span><span>Thoughtfully shaping what’s next.</span><a href="#projects-page-title">Back to top ↑</a></div>
-      </footer>
+      <Footer backToTopTarget="#projects-page-title" />
     </div>
   );
 }
 
-function GalleryPage() {
-  const [galleryType, setGalleryType] = useState('photos');
-  const [selectedItem, setSelectedItem] = useState(null);
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const items = Array.from({ length: 9 }, (_, index) => ({ id: index + 1, title: `Gallery item ${String(index + 1).padStart(2, '0')}` }));
 
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 24);
-    const previousTitle = document.title;
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    document.title = 'Gallery | Maha Constructions';
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      document.title = previousTitle;
-    };
-  }, []);
-
-  useEffect(() => {
-    if (!selectedItem) return undefined;
-    const closeOnEscape = (event) => event.key === 'Escape' && setSelectedItem(null);
-    window.addEventListener('keydown', closeOnEscape);
-    return () => window.removeEventListener('keydown', closeOnEscape);
-  }, [selectedItem]);
-
-  return (
-    <div className="gallery-page">
-      <header className={`site-header projects-header${scrolled ? ' is-scrolled' : ''}${menuOpen ? ' menu-open' : ''}`}>
-        <a className="wordmark" href={sitePath('/')} aria-label="Maha Constructions home"><img src={sitePath('/images/maha-constructions-logo.png')} alt="Maha Constructions" /></a>
-        <button className="menu-toggle" type="button" aria-label={menuOpen ? 'Close navigation' : 'Open navigation'} aria-expanded={menuOpen} onClick={() => setMenuOpen((open) => !open)}>{menuOpen ? <X size={22} aria-hidden="true" /> : <Menu size={22} aria-hidden="true" />}</button>
-        <nav className={`main-nav${menuOpen ? ' is-open' : ''}`} aria-label="Main navigation">
-          <a href={sitePath('/')}>Home</a><a href={sitePath('/about')}>About Us</a><a href={sitePath('/projects')}>Projects</a><a href={sitePath('/#services')}>What We Do</a><a href={sitePath('/joint-venture')}>Joint Venture</a><a href={sitePath('/gallery')} aria-current="page">Gallery</a><a href={sitePath('/contact')}>Contact</a><a className="nav-enquiry" href={sitePath('/contact#contact-form')}>Enquire <ArrowUpRight size={14} aria-hidden="true" /></a>
-        </nav>
-      </header>
-      <main className="gallery-main section-shell">
-        <div className="gallery-heading"><span className="eyebrow">A closer look</span><h1 id="gallery-title">Moments that<br />make us.</h1><p>A growing collection of moments from the Maha Constructions community.</p>
-          <div className="gallery-toggle" role="group" aria-label="Choose gallery type">
-            {['photos', 'videos'].map((type) => <button key={type} type="button" className={galleryType === type ? 'is-active' : ''} aria-pressed={galleryType === type} onClick={() => { setGalleryType(type); setSelectedItem(null); }}>{type === 'photos' ? 'Photo gallery' : 'Video gallery'}</button>)}
-          </div>
-        </div>
-        <div className="gallery-grid" aria-label={galleryType === 'photos' ? 'Photo gallery' : 'Video gallery'}>
-          {items.map((item) => <button className={`gallery-card${galleryType === 'videos' ? ' is-video' : ''}`} key={item.id} type="button" aria-label={`View ${galleryType === 'photos' ? 'photo' : 'video'} placeholder ${item.id}`} onClick={() => setSelectedItem(item)}>
-            <span className="gallery-card-art" aria-hidden="true">{galleryType === 'videos' && <span className="gallery-play">▶</span>}<span className="gallery-placeholder-label">{galleryType === 'photos' ? 'Photo' : 'Video'} placeholder</span></span>
-            <span className="gallery-card-title">{item.title}</span>
-          </button>)}
-        </div>
-      </main>
-      <footer className="footer"><div className="footer-main"><div className="footer-brand"><a className="wordmark" href={sitePath('/')}><img src={sitePath('/images/maha-constructions-logo.png')} alt="Maha Constructions" /></a><p>Building spaces.<br />Creating possibilities.</p></div><div className="footer-links"><span className="footer-label">Explore</span><a href={sitePath('/about')}>About Us</a><a href={sitePath('/projects')}>Projects</a><a href={sitePath('/gallery')}>Gallery</a><a href={sitePath('/joint-venture')}>Joint Venture</a></div><div className="footer-links"><span className="footer-label">Get in touch</span><a href="mailto:info@saimaha.com">info@saimaha.com</a><a href={sitePath('/contact#contact-form')}>Make an enquiry</a></div></div></footer>
-      {selectedItem && <div className="gallery-lightbox" role="presentation" onMouseDown={(event) => event.target === event.currentTarget && setSelectedItem(null)}><div className="gallery-lightbox-panel" role="dialog" aria-modal="true" aria-label={`${galleryType === 'photos' ? 'Photo' : 'Video'} placeholder`}><button type="button" className="gallery-lightbox-close" aria-label="Close viewer" onClick={() => setSelectedItem(null)}><X size={24} aria-hidden="true" /></button><div className="gallery-lightbox-art"><span>{galleryType === 'photos' ? 'Photo' : 'Video'} placeholder</span></div><p>{selectedItem.title}</p></div></div>}
-    </div>
-  );
-}
 
 function HomePage() {
   const [activeSlide, setActiveSlide] = useState(0);
@@ -759,8 +1054,14 @@ function HomePage() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [formState, setFormState] = useState('idle');
-  const [formValues, setFormValues] = useState({ name: '', phone: '', email: '', interest: 'Residential' });
+  const [formValues, setFormValues] = useState({ name: '', phone: '', email: '', message: '' });
+  const [hoveredService, setHoveredService] = useState(null);
+  const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
+
   const heroTimer = useRef(null);
+  const stat1Ref = useRef(null);
+  const stat2Ref = useRef(null);
+  const stat3Ref = useRef(null);
 
   const moveSlide = (direction) => {
     setActiveSlide((current) => (current + direction + heroSlides.length) % heroSlides.length);
@@ -816,10 +1117,60 @@ function HomePage() {
         );
       });
 
-      gsap.utils.toArray('[data-project-card]').forEach((card, index) => {
+      // Live count-up animation on stats
+      const counterObj = { n1: 0, n2: 0, n3: 0 };
+      gsap.to(counterObj, {
+        n1: 30,
+        n2: 55,
+        n3: 100,
+        duration: 2.2,
+        ease: 'power2.out',
+        scrollTrigger: { trigger: '.stats', start: 'top 85%', once: true },
+        onUpdate: () => {
+          if (stat1Ref.current) stat1Ref.current.innerText = Math.round(counterObj.n1);
+          if (stat2Ref.current) stat2Ref.current.innerText = Math.round(counterObj.n2);
+          if (stat3Ref.current) stat3Ref.current.innerText = Math.round(counterObj.n3);
+        },
+      });
+
+      // Parallax scrub on about-image
+      gsap.fromTo(
+        '.about-image',
+        { y: 25 },
+        {
+          y: -25,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: '#about',
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: 1.2,
+          },
+        },
+      );
+
+      // Parallax scrub on joint-venture watermark
+      gsap.fromTo(
+        '.joint-venture-mark',
+        { y: 35 },
+        {
+          y: -35,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: '#joint-venture',
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: 1.5,
+          },
+        },
+      );
+
+      // Enhanced 3D deck card stacking
+      const cards = gsap.utils.toArray('[data-project-card]');
+      cards.forEach((card, index) => {
         gsap.fromTo(
           card.querySelector('img'),
-          { scale: 0.88 },
+          { scale: 1.08 },
           {
             scale: 1,
             ease: 'none',
@@ -832,6 +1183,21 @@ function HomePage() {
           },
         );
         card.style.setProperty('--stack-index', index);
+
+        if (index < cards.length - 1) {
+          const nextCard = cards[index + 1];
+          gsap.to(card, {
+            scale: 0.95,
+            opacity: 0.88,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: nextCard,
+              start: 'top 65%',
+              end: 'top 20%',
+              scrub: true,
+            },
+          });
+        }
       });
     });
 
@@ -845,6 +1211,23 @@ function HomePage() {
   const handleSubmit = (event) => {
     event.preventDefault();
     setFormState('submitted');
+  };
+
+  const handleCardTilt = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    e.currentTarget.style.transform = `perspective(600px) rotateX(${-y * 12}deg) rotateY(${x * 12}deg) translateY(-6px)`;
+  };
+  const handleCardReset = (e) => {
+    e.currentTarget.style.transform = 'perspective(600px) rotateX(0deg) rotateY(0deg) translateY(0px)';
+  };
+  const handleJvMouseMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    e.currentTarget.style.setProperty('--jv-x', `${x}%`);
+    e.currentTarget.style.setProperty('--jv-y', `${y}%`);
   };
 
   return (
@@ -863,20 +1246,20 @@ function HomePage() {
           {menuOpen ? <X size={22} /> : <Menu size={22} />}
         </button>
         <nav className={`main-nav${menuOpen ? ' is-open' : ''}`} aria-label="Main navigation">
-          <a href={sitePath('/about')} onClick={closeMenu}>About Us</a>
-          <a href="#projects" onClick={closeMenu}>Projects</a>
-          <a href="#services" onClick={closeMenu}>What We Do</a>
+          <a href={sitePath('/about-2')} onClick={closeMenu}>About Us</a>
+          <a href={sitePath('/projects')} onClick={closeMenu}>Projects</a>
           <a href={sitePath('/joint-venture')} onClick={closeMenu}>Joint Venture</a>
           <a href={sitePath('/gallery')} onClick={closeMenu}>Gallery</a>
           <a href={sitePath('/contact')} onClick={closeMenu}>Contact</a>
           <a className="nav-enquiry" href="#enquiry" onClick={closeMenu}>
+            <span className="pulse-beacon" aria-hidden="true" />
             Enquire <ArrowUpRight size={14} weight="regular" />
           </a>
         </nav>
       </header>
 
       <main id="home">
-        <section className="hero" aria-label="Featured Sai Maha developments">
+        <section className="hero" aria-label="Featured Maha Constructions developments">
           {heroSlides.map((slide, index) => (
             <picture className={`hero-picture${activeSlide === index ? ' is-active' : ''}`} key={slide.desktop} aria-hidden={activeSlide !== index}>
               <source media="(max-width: 700px)" srcSet={slide.mobile} />
@@ -887,6 +1270,9 @@ function HomePage() {
             <button type="button" aria-label="Previous image" onClick={() => moveSlide(-1)}>
               <CaretLeft size={19} />
             </button>
+            <div className="hero-progress" aria-hidden="true">
+              <div className="hero-progress-bar" key={activeSlide} />
+            </div>
             <div className="hero-dots" role="tablist" aria-label="Choose hero image">
               {heroSlides.map((slide, index) => (
                 <button
@@ -904,21 +1290,37 @@ function HomePage() {
               <CaretRight size={19} />
             </button>
           </div>
+          <a href="#about" className="hero-scroll-cue" aria-label="Scroll to explore">
+            <span>Scroll to explore</span>
+            <CaretDown size={14} className="bounce-arrow" />
+          </a>
         </section>
 
-        <section className="stats section-shell" aria-label="Sai Maha at a glance">
+        <section className="stats section-shell" aria-label="Maha Constructions at a glance">
           <div className="stats-intro" data-reveal>
             <span className="eyebrow">A foundation built over time</span>
             <p>Rooted in trust.<br />Growing with purpose.</p>
           </div>
-          <div className="stat" data-reveal>
-            <strong>30<span>+</span></strong><span>Years of experience</span>
+          <div className="stat" data-reveal onMouseMove={handleCardTilt} onMouseLeave={handleCardReset}>
+            <div className="stat-header">
+              <Compass size={22} className="stat-icon" aria-hidden="true" />
+            </div>
+            <strong><span ref={stat1Ref}>30</span><span>+</span></strong>
+            <span>Years of experience</span>
           </div>
-          <div className="stat" data-reveal>
-            <strong>55<span>+</span></strong><span>Projects completed</span>
+          <div className="stat" data-reveal onMouseMove={handleCardTilt} onMouseLeave={handleCardReset}>
+            <div className="stat-header">
+              <Buildings size={22} className="stat-icon" aria-hidden="true" />
+            </div>
+            <strong><span ref={stat2Ref}>55</span><span>+</span></strong>
+            <span>Projects completed</span>
           </div>
-          <div className="stat" data-reveal>
-            <strong>100<span>s</span></strong><span>Happy customers</span>
+          <div className="stat" data-reveal onMouseMove={handleCardTilt} onMouseLeave={handleCardReset}>
+            <div className="stat-header">
+              <UsersThree size={22} className="stat-icon" aria-hidden="true" />
+            </div>
+            <strong><span ref={stat3Ref}>100</span><span>+</span></strong>
+            <span>Happy customers</span>
           </div>
         </section>
 
@@ -929,13 +1331,24 @@ function HomePage() {
               Three decades of building <span className="inline-image" aria-hidden="true" /> trust.
             </h1>
             <p className="body-copy" data-word-reveal>
-              Since 1990, Sai Maha has been shaping thoughtful places and property opportunities with a long view of what makes a community thrive.
+              Since 1990, Maha Constructions has been shaping thoughtful places and property opportunities with a long view of what makes a community thrive.
             </p>
             <a className="text-link" href={sitePath('/joint-venture')} data-reveal>
               Discover our story <ArrowRight size={16} />
             </a>
           </div>
           <figure className="about-image image-frame" data-reveal>
+            <div className="about-badge" aria-hidden="true">
+              <svg viewBox="0 0 120 120" className="about-badge-svg">
+                <path id="badgePath" d="M 60, 60 m -45, 0 a 45,45 0 1,1 90,0 a 45,45 0 1,1 -90,0" fill="transparent" />
+                <text className="about-badge-text">
+                  <textPath href="#badgePath">· SINCE 1990 · MAHA CONSTRUCTIONS ·</textPath>
+                </text>
+              </svg>
+              <div className="about-badge-center">
+                <Sparkle size={18} weight="fill" />
+              </div>
+            </div>
             <img
               src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1500&q=86"
               alt="A calm, naturally lit home interior"
@@ -951,9 +1364,18 @@ function HomePage() {
             <h2>From land to<br />lived-in places.</h2>
             <p className="body-copy">A considered approach at every stage, shaped around people and the potential of a place.</p>
           </div>
-          <div className="service-list">
+          <div
+            className="service-list"
+            onMouseMove={(e) => setCursorPos({ x: e.clientX, y: e.clientY })}
+          >
             {services.map((service, index) => (
-              <article className={`service-item${activeService === index ? ' is-open' : ''}`} key={service.title} data-reveal>
+              <article
+                className={`service-item${activeService === index ? ' is-open' : ''}`}
+                key={service.title}
+                data-reveal
+                onMouseEnter={() => setHoveredService(service)}
+                onMouseLeave={() => setHoveredService(null)}
+              >
                 <button
                   className="service-trigger"
                   type="button"
@@ -973,6 +1395,16 @@ function HomePage() {
               </article>
             ))}
           </div>
+          {hoveredService && (
+            <div
+              className="service-cursor-preview"
+              style={{ left: `${cursorPos.x}px`, top: `${cursorPos.y}px` }}
+              aria-hidden="true"
+            >
+              <img src={hoveredService.image} alt={hoveredService.project} />
+              <span className="service-preview-tag">{hoveredService.project}</span>
+            </div>
+          )}
         </section>
 
         <section className="projects section-shell" id="projects">
@@ -1000,14 +1432,16 @@ function HomePage() {
           </div>
         </section>
 
-        <section className="joint-venture" id="joint-venture">
+        <GoogleReviewsSection id="home-reviews" title="What our customers say." />
+
+        <section className="joint-venture" id="joint-venture" onMouseMove={handleJvMouseMove}>
           <div className="joint-venture-inner" data-reveal>
             <span className="eyebrow">A partnership with possibility</span>
             <h2>Have land?<br />Let’s build together.</h2>
             <p>Bring your land. Bring your vision. We’ll bring the experience to make the next step count.</p>
             <a className="button button-light" href="#enquiry">Explore joint ventures <ArrowUpRight size={16} /></a>
           </div>
-          <span className="joint-venture-mark" aria-hidden="true">SM</span>
+          <span className="joint-venture-mark" aria-hidden="true">MC</span>
         </section>
 
         <section className="contact section-shell" id="contact">
@@ -1015,65 +1449,93 @@ function HomePage() {
             <span className="eyebrow">Start a conversation</span>
             <h2>Let’s build<br />something<br />together.</h2>
             <p className="body-copy">Have a project in mind? Tell us a little about it and our team will be in touch.</p>
-            <a className="contact-email" href="mailto:info@saimaha.com">info@saimaha.com <ArrowUpRight size={15} /></a>
+            <div className="contact-quick-links">
+              <a className="contact-email" href="mailto:saimaha1000@gmail.com">
+                saimaha1000@gmail.com <ArrowUpRight size={15} />
+              </a>
+              <a className="contact-whatsapp" href="https://wa.me/919094044052" target="_blank" rel="noreferrer">
+                <WhatsappLogo size={18} weight="fill" /> +91 90940 44052
+              </a>
+            </div>
           </div>
           <form className="enquiry-form" id="enquiry" onSubmit={handleSubmit} data-reveal>
-            <div className="form-heading"><span className="eyebrow">Enquiry</span><span>We usually reply within two working days.</span></div>
-            <label>
-              <span>Your name</span>
-              <input name="name" autoComplete="name" value={formValues.name} onChange={handleFormChange} placeholder="e.g. Priya Kumar" required />
-            </label>
+            <div className="contact-page-form-heading">
+              <div>
+                <span className="eyebrow">Your enquiry</span>
+                <h2>How can we help?</h2>
+              </div>
+              <span>All fields required</span>
+            </div>
             <div className="form-row">
               <label>
-                <span>Phone number</span>
-                <input name="phone" type="tel" autoComplete="tel" value={formValues.phone} onChange={handleFormChange} placeholder="+91" required />
+                <span>Name</span>
+                <input
+                  name="name"
+                  autoComplete="name"
+                  value={formValues.name}
+                  onChange={handleFormChange}
+                  placeholder="Your full name"
+                  required
+                />
               </label>
               <label>
-                <span>Email address</span>
-                <input name="email" type="email" autoComplete="email" value={formValues.email} onChange={handleFormChange} placeholder="you@example.com" required />
+                <span>Phone number</span>
+                <input
+                  name="phone"
+                  type="tel"
+                  autoComplete="tel"
+                  value={formValues.phone}
+                  onChange={handleFormChange}
+                  placeholder="Your phone number"
+                  required
+                />
               </label>
             </div>
             <label>
-              <span>I’m interested in</span>
-              <select name="interest" value={formValues.interest} onChange={handleFormChange}>
-                <option>Residential</option>
-                <option>Land development</option>
-                <option>Joint venture</option>
-                <option>Commercial</option>
-                <option>Something else</option>
-              </select>
+              <span>Email address</span>
+              <input
+                name="email"
+                type="email"
+                autoComplete="email"
+                value={formValues.email}
+                onChange={handleFormChange}
+                placeholder="you@example.com"
+                required
+              />
+            </label>
+            <fieldset className="contact-enquiry-types">
+              <legend>What would you like to discuss?</legend>
+              {['General Inquiry', 'Building Contract', 'Joint Venture'].map((type) => (
+                <label key={type}>
+                  <input type="checkbox" name="enquiryType" value={type} />
+                  <span>{type}</span>
+                </label>
+              ))}
+            </fieldset>
+            <label>
+              <span>Message</span>
+              <textarea
+                name="message"
+                rows="5"
+                value={formValues.message}
+                onChange={handleFormChange}
+                placeholder="Share a few details about your enquiry"
+                required
+              />
             </label>
             <button className="button button-green" type="submit">
-              Send an enquiry <ArrowUpRight size={16} />
+              Send enquiry <ArrowUpRight size={16} aria-hidden="true" />
             </button>
             <p className={`form-note${formState === 'submitted' ? ' is-visible' : ''}`} role="status">
               {formState === 'submitted'
-                ? 'Thanks for sharing. This form is ready for a submission service to be connected.'
-                : 'Your details stay private and are only used to respond to your enquiry.'}
+                ? 'Thanks for reaching out. Form submission will be enabled once the enquiry service is connected.'
+                : 'This form is a preview and does not send messages yet.'}
             </p>
           </form>
         </section>
       </main>
 
-      <footer className="footer">
-        <div className="footer-main">
-          <div className="footer-brand">
-            <a className="wordmark" href="#home" aria-label="Maha Constructions home"><img src={sitePath('/images/maha-constructions-logo.png')} alt="" /></a>
-            <p>Building spaces.<br />Creating possibilities.</p>
-            <a href="https://maps.google.com/?q=Chennai+Tamil+Nadu" target="_blank" rel="noreferrer">Chennai, Tamil Nadu <ArrowUpRight size={13} /></a>
-          </div>
-          <div className="footer-links">
-            <span className="footer-label">Explore</span>
-            <a href={sitePath('/about')}>About Us</a><a href={sitePath('/projects')}>Projects</a><a href="#services">What We Do</a><a href={sitePath('/joint-venture')}>Joint Venture</a>
-          </div>
-          <div className="footer-links">
-            <span className="footer-label">Get in touch</span>
-            <a href="mailto:info@saimaha.com">info@saimaha.com</a><a href="#enquiry">Make an enquiry <ArrowUpRight size={13} /></a>
-          </div>
-          <div className="footer-mark" aria-hidden="true">S<span>M</span></div>
-        </div>
-        <div className="footer-bottom"><span>© {new Date().getFullYear()} Sai Maha</span><span>Thoughtfully shaping what’s next.</span><a href="#home">Back to top ↑</a></div>
-      </footer>
+      <Footer backToTopTarget="#home" />
     </>
   );
 }
