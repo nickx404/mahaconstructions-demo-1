@@ -40,8 +40,6 @@ gsap.registerPlugin(ScrollTrigger);
 const heroSlides = [
   {
     desktop: sitePath('/images/hero-maha-kuber-ai-with-logo.jpg'),
-    mobile:
-      'https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1100&q=86',
     alt: 'Maha Kuber luxury residential project at Thirumangalam, Chennai by Maha Constructions (with Logo)',
   },
   {
@@ -1432,7 +1430,7 @@ function HomePage() {
         <section className="hero" aria-label="Featured Maha Constructions developments">
           {heroSlides.map((slide, index) => (
             <picture className={`hero-picture${activeSlide === index ? ' is-active' : ''}`} key={slide.desktop} aria-hidden={activeSlide !== index}>
-              <source media="(max-width: 700px)" srcSet={slide.mobile} />
+              {slide.mobile && <source media="(max-width: 700px)" srcSet={slide.mobile} />}
               <img src={slide.desktop} alt={slide.alt} fetchPriority={index === 0 ? 'high' : 'auto'} />
             </picture>
           ))}
