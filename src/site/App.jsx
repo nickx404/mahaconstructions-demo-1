@@ -13,10 +13,12 @@ import {
   Clock,
   Compass,
   Diamond,
+  Eye,
   GoogleLogo,
   Handshake,
   Key,
   List as Menu,
+  MagnifyingGlassPlus,
   MapPin,
   MapPinLine,
   Medal,
@@ -38,6 +40,8 @@ gsap.registerPlugin(ScrollTrigger);
 const heroSlides = [
   {
     desktop: sitePath('/images/hero-maha-kuber-ai-with-logo.jpg'),
+    mobile:
+      'https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1100&q=86',
     alt: 'Maha Kuber luxury residential project at Thirumangalam, Chennai by Maha Constructions (with Logo)',
   },
   {
@@ -107,7 +111,7 @@ const ongoingProjects = [
     slug: 'mahakuber-ananagar',
     name: 'Maha Kuber',
     location: 'Thirumangalam, Chennai',
-    details: ['Residential', '2 & 3 BHK', '852 - 1224 sq.ft', 'Bank Loan Available'],
+    details: ['Residential', '2 & 3 BHK', '540 - 960 sq.ft', 'Bank Loan Available'],
     amenities: [
       'Covered Car Parking',
       '100% Vaastu',
@@ -118,11 +122,13 @@ const ongoingProjects = [
     ],
     fullAddress: 'Plot no 5, Thirumangalam Road, Post office st, Villivakkam, ch-49.',
     intro: 'A perfect space for your perfect life.',
-    image: sitePath('/images/hero-maha-kuber-ai-native.jpg'),
+    image: sitePath('/images/maha-kuber-elevation-expanded.png'),
   },
 ];
 
 const completedProjects = [
+  { name: 'Maha Jayam', image: sitePath('/images/completed-projects/maha-jayam.jpg') },
+  { name: 'Maha Dhanvin', image: sitePath('/images/completed-projects/maha-dhanvin.jpg') },
   { name: 'Maha Amogha', image: sitePath('/images/completed-projects/maha-amogha.png') },
   { name: 'Maha Guru', image: sitePath('/images/completed-projects/maha-guru.png') },
   { name: 'Maha Amrutha', image: sitePath('/images/completed-projects/maha-amrutha.png') },
@@ -878,6 +884,37 @@ function ProjectsPage() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [projectStatus, setProjectStatus] = useState('ongoing');
+  const [selectedCompletedIndex, setSelectedCompletedIndex] = useState(null);
+  const [zoomLevel, setZoomLevel] = useState(1);
+
+  useEffect(() => {
+    if (selectedCompletedIndex === null) return undefined;
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        setSelectedCompletedIndex(null);
+        setZoomLevel(1);
+      } else if (event.key === 'ArrowRight') {
+        setSelectedCompletedIndex((prev) => (prev + 1) % completedProjects.length);
+        setZoomLevel(1);
+      } else if (event.key === 'ArrowLeft') {
+        setSelectedCompletedIndex((prev) => (prev - 1 + completedProjects.length) % completedProjects.length);
+        setZoomLevel(1);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [selectedCompletedIndex]);
+
+  useEffect(() => {
+    if (selectedCompletedIndex !== null) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [selectedCompletedIndex]);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 24);
@@ -1005,9 +1042,9 @@ function ProjectsPage() {
             <div className="ongoing-project-grid" key="ongoing">
               {ongoingProjects.map((project, index) => (
                 <a className="ongoing-project-card" href={sitePath(`/projects/${project.slug}`)} aria-label={`View details for ${project.name}, ${project.location}`} key={`${project.name}-${index}`} data-projects-reveal>
-                  <div className="project-placeholder" data-projects-image aria-label={`${project.name} image`}>
+                  <div className="project-placeholder ongoing-project-image" data-projects-image aria-label={`${project.name} image`}>
                     {project.image ? (
-                      <img src={project.image} alt={project.name} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                      <img src={project.image} alt={`${project.name} building elevation`} loading="lazy" />
                     ) : (
                       <Buildings size={46} weight="thin" aria-hidden="true" />
                     )}
@@ -1027,17 +1064,152 @@ function ProjectsPage() {
           ) : (
             <div className="completed-project-grid" key="completed">
               {completedProjects.map((project, index) => (
-                <article className="completed-project-card" key={project.name} data-projects-reveal>
+                <button
+                  type="button"
+                  className="completed-project-card"
+                  key={project.name}
+                  data-projects-reveal
+                  onClick={() => {
+                    setSelectedCompletedIndex(index);
+                    setZoomLevel(1);
+                  }}
+                  aria-label={`View photo of ${project.name}`}
+                >
                   <div className="completed-project-image">
                     <img src={project.image} alt={project.name} loading="lazy" data-projects-image />
+                    <div className="completed-project-overlay" aria-hidden="true">
+                      <span className="completed-project-view-badge">
+                        <Eye size={16} weight="bold" />
+                        <span>View photo</span>
+                      </span>
+                    </div>
                   </div>
-                  <h3>{project.name}</h3>
-                </article>
+                  <div className="completed-project-info">
+                    <h3>{project.name}</h3>
+                  </div>
+                </button>
               ))}
             </div>
           )}
         </section>
       </main>
+
+      {selectedCompletedIndex !== null && completedProjects[selectedCompletedIndex] && (
+        <div
+          className="cinematic-lightbox"
+          role="dialog"
+          aria-modal="true"
+          aria-label={`Completed Project photo: ${completedProjects[selectedCompletedIndex].name}`}
+          onClick={(e) => {
+            if (e.target === e.currentTarget) {
+              setSelectedCompletedIndex(null);
+              setZoomLevel(1);
+            }
+          }}
+        >
+          <div className="cinematic-modal-panel completed-modal-panel">
+            <div className="lightbox-header-bar">
+              <div className="lightbox-title-wrap">
+                <span className="lightbox-category-pill">
+                  Completed Project • Residential
+                </span>
+                <span className="lightbox-counter-pill">
+                  {selectedCompletedIndex + 1} / {completedProjects.length}
+                </span>
+              </div>
+
+              <div className="lightbox-actions-group">
+                <button
+                  type="button"
+                  className="lightbox-tool-btn"
+                  title={zoomLevel === 1 ? 'Zoom in' : 'Reset zoom'}
+                  onClick={() => setZoomLevel((z) => (z === 1 ? 1.35 : 1))}
+                >
+                  <MagnifyingGlassPlus size={18} weight="bold" />
+                  <span>{zoomLevel === 1 ? 'Zoom In' : 'Reset Zoom'}</span>
+                </button>
+
+                <button
+                  type="button"
+                  className="gallery-lightbox-close"
+                  aria-label="Close viewer"
+                  onClick={() => {
+                    setSelectedCompletedIndex(null);
+                    setZoomLevel(1);
+                  }}
+                >
+                  <X size={22} weight="bold" aria-hidden="true" />
+                </button>
+              </div>
+            </div>
+
+            <div className="lightbox-media-stage completed-media-stage">
+              <div className="cinema-photo-wrapper">
+                <div className="lightbox-photo-stage">
+                  <img
+                    src={completedProjects[selectedCompletedIndex].image}
+                    alt={completedProjects[selectedCompletedIndex].name}
+                    className="lightbox-actual-image"
+                    onClick={() => setZoomLevel((z) => (z === 1 ? 1.35 : 1))}
+                    title={zoomLevel === 1 ? 'Click to zoom in' : 'Click to reset zoom'}
+                    style={{
+                      transform: `scale(${zoomLevel})`,
+                      transition: 'transform 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+                      cursor: zoomLevel === 1 ? 'zoom-in' : 'zoom-out',
+                    }}
+                  />
+                </div>
+              </div>
+
+              <button
+                type="button"
+                className="lightbox-nav-btn nav-prev"
+                aria-label="Previous completed project"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setSelectedCompletedIndex(
+                    (prev) => (prev - 1 + completedProjects.length) % completedProjects.length
+                  );
+                  setZoomLevel(1);
+                }}
+              >
+                <CaretLeft size={24} weight="bold" />
+              </button>
+
+              <button
+                type="button"
+                className="lightbox-nav-btn nav-next"
+                aria-label="Next completed project"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setSelectedCompletedIndex(
+                    (prev) => (prev + 1) % completedProjects.length
+                  );
+                  setZoomLevel(1);
+                }}
+              >
+                <CaretRight size={24} weight="bold" />
+              </button>
+            </div>
+
+            <div className="lightbox-details-footer">
+              <div className="lightbox-desc-block">
+                <h3>{completedProjects[selectedCompletedIndex].name}</h3>
+              </div>
+              <div className="lightbox-spec-matrix">
+                <div className="spec-item">
+                  <span className="spec-label">Status</span>
+                  <span className="spec-value">Handed Over</span>
+                </div>
+                <div className="spec-item">
+                  <span className="spec-label">Location</span>
+                  <span className="spec-value">Chennai</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       <Footer backToTopTarget="#projects-page-title" />
     </div>
@@ -1260,7 +1432,7 @@ function HomePage() {
         <section className="hero" aria-label="Featured Maha Constructions developments">
           {heroSlides.map((slide, index) => (
             <picture className={`hero-picture${activeSlide === index ? ' is-active' : ''}`} key={slide.desktop} aria-hidden={activeSlide !== index}>
-              {slide.mobile && <source media="(max-width: 700px)" srcSet={slide.mobile} />}
+              <source media="(max-width: 700px)" srcSet={slide.mobile} />
               <img src={slide.desktop} alt={slide.alt} fetchPriority={index === 0 ? 'high' : 'auto'} />
             </picture>
           ))}
