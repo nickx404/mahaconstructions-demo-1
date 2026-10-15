@@ -903,7 +903,7 @@ img { display: block; max-width: 100%; }
   .projects-intro .body-copy { max-width: 400px; }
   .project-count { margin-top: 33px; }
   .project-stack { gap: 24px; }
-  .project-card { position: sticky; top: calc(96px + var(--stack-index) * 23px); z-index: calc(1 + var(--stack-index)); padding: 0 0 18px; background: transparent; }
+  .project-card { position: relative; top: auto; z-index: auto; padding: 0 0 18px; background: var(--paper); }
   .project-image { height: min(115vw, 480px); }
   .projects-page-main, .company-about-main { padding-top: 68px; }
   .projects-page .projects-header, .company-about-page .projects-header { height: 68px; color: var(--deep); background: rgba(250,250,246,.96); }
