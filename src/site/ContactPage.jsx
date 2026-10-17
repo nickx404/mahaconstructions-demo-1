@@ -518,7 +518,7 @@ export default function ContactPage() {
                     <button 
                       type="button" 
                       className="copy-mini-btn" 
-                      onClick={() => handleCopy('+919094044052', 'phone')}
+                      onClick={() => handleCopy('+919940407777', 'phone')}
                       title="Copy phone number"
                     >
                       {copiedField === 'phone' ? (
@@ -529,8 +529,8 @@ export default function ContactPage() {
                     </button>
                   </div>
                   <p>
-                    <a className="detail-primary-link" href="tel:+919094044052">
-                      +91 90940 44052
+                    <a className="detail-primary-link" href="tel:+919940407777">
+                      +91 99404 07777
                     </a>
                   </p>
                   <small className="detail-hint">Mon – Sat, 9:00 AM – 7:00 PM IST</small>
@@ -550,16 +550,16 @@ export default function ContactPage() {
                   <p>
                     <a 
                       className="detail-primary-link" 
-                      href="https://wa.me/919094044052" 
+                      href="https://wa.me/919940407777" 
                       target="_blank" 
                       rel="noopener noreferrer"
                     >
-                      +91 90940 44052
+                      +91 99404 07777
                     </a>
                   </p>
                   <a 
                     className="whatsapp-quick-chip" 
-                    href="https://wa.me/919094044052" 
+                    href="https://wa.me/919940407777" 
                     target="_blank" 
                     rel="noopener noreferrer"
                   >

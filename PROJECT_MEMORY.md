@@ -33,5 +33,5 @@ Make About feel editorial and story-driven, with large photography, typography, 
 
 ## Content requiring verification
 
-The shared chat floated 1990 as the founding year, “30+” years, “55+” projects, and “100s+” customers. These are **unverified placeholders**, not approved facts. Confirm the actual history and all figures before publishing. Also request the founder’s approved photo, exact quote, name/title, and short background, plus genuine company milestones and approved project imagery.
+The confirmed company metrics are **80+ completed projects** and **509+ happy customers**. The confirmed primary phone and WhatsApp number is **+91 99404 07777**. Compliance is CMDA compliant (RERA reference omitted). Maha Kuber's configuration is confirmed as 1 & 2 BHK (540–960 sq.ft). Request the founder’s approved photo, exact quote, name/title, and short background when ready.
 

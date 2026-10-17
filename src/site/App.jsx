@@ -109,7 +109,7 @@ const ongoingProjects = [
     slug: 'mahakuber-ananagar',
     name: 'Maha Kuber',
     location: 'Thirumangalam, Chennai',
-    details: ['Residential', '2 & 3 BHK', '540 - 960 sq.ft', 'Bank Loan Available'],
+    details: ['Residential', '1 & 2 BHK', '540 - 960 sq.ft', 'Bank Loan Available'],
     amenities: [
       'Covered Car Parking',
       '100% Vaastu',
@@ -117,6 +117,8 @@ const ongoingProjects = [
       'Automatic Elevator',
       'CCTV Surveillance Camera',
       'Architect Designed',
+      '24/7 Water Supply',
+      'Three-Phase EB',
     ],
     fullAddress: 'Plot no 5, Thirumangalam Road, Post office st, Villivakkam, ch-49.',
     intro: 'A perfect space for your perfect life.',
@@ -488,8 +490,8 @@ function JointVenturePage() {
 
         <section className="jv-trust-strip" aria-label="Maha Constructions at a glance">
           <div><strong>Since 1990</strong><span>Construction experience</span></div>
-          <div><strong>55+</strong><span>Residential projects</span></div>
-          <div><strong>100s</strong><span>Customers</span></div>
+          <div><strong>80+</strong><span>Residential projects</span></div>
+          <div><strong>509+</strong><span>Customers</span></div>
           <div><strong>Chennai</strong><span>Local expertise</span></div>
         </section>
 
@@ -677,7 +679,7 @@ function JointVenturePage() {
           <h2 id="jv-closing-title">Have land?<br />Let’s build something valuable.</h2>
           <p>Explore a joint development opportunity with Maha Constructions.</p>
           <div><a className="button button-light" href="#jv-enquiry">Start a conversation <ArrowRight size={16} aria-hidden="true" /></a></div>
-          <p className="jv-contact-links"><a href="tel:+919094044052">Call: +91 90940 44052</a><a href="https://wa.me/919094044052" target="_blank" rel="noopener noreferrer">WhatsApp: +91 90940 44052</a><a href="#jv-enquiry">Enquire</a></p>
+          <p className="jv-contact-links"><a href="tel:+919940407777">Call: +91 99404 07777</a><a href="https://wa.me/919940407777" target="_blank" rel="noopener noreferrer">WhatsApp: +91 99404 07777</a><a href="#jv-enquiry">Enquire</a></p>
         </section>
       </main>
 
@@ -840,7 +842,7 @@ function OngoingProjectPage({ project }) {
             <h2>Plan your space.</h2>
           </div>
           <div className="project-plan-tabs" role="tablist" aria-label="Floor plan configurations">
-            {['2 BHK Layout', '3 BHK Layout', 'Master Plan'].map((plan, index) => (
+            {['1 BHK Layout', '2 BHK Layout', 'Master Plan'].map((plan, index) => (
               <button className={activePlan === index ? 'is-active' : ''} id={`plan-tab-${index}`} type="button" role="tab" aria-selected={activePlan === index} aria-controls="plan-panel" key={plan} onClick={() => setActivePlan(index)}>{plan}</button>
             ))}
           </div>
@@ -1223,8 +1225,6 @@ function HomePage() {
   const [scrolled, setScrolled] = useState(false);
   const [formState, setFormState] = useState('idle');
   const [formValues, setFormValues] = useState({ name: '', phone: '', email: '', message: '' });
-  const [hoveredService, setHoveredService] = useState(null);
-  const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
 
   const heroTimer = useRef(null);
   const stat1Ref = useRef(null);
@@ -1289,8 +1289,8 @@ function HomePage() {
       const counterObj = { n1: 0, n2: 0, n3: 0 };
       gsap.to(counterObj, {
         n1: 30,
-        n2: 55,
-        n3: 100,
+        n2: 80,
+        n3: 509,
         duration: 2.2,
         ease: 'power2.out',
         scrollTrigger: { trigger: '.stats', start: 'top 85%', once: true },
@@ -1480,14 +1480,14 @@ function HomePage() {
             <div className="stat-header">
               <Buildings size={22} className="stat-icon" aria-hidden="true" />
             </div>
-            <strong><span ref={stat2Ref}>55</span><span>+</span></strong>
+            <strong><span ref={stat2Ref}>80</span><span>+</span></strong>
             <span>Projects completed</span>
           </div>
           <div className="stat" data-reveal onMouseMove={handleCardTilt} onMouseLeave={handleCardReset}>
             <div className="stat-header">
               <UsersThree size={22} className="stat-icon" aria-hidden="true" />
             </div>
-            <strong><span ref={stat3Ref}>100</span><span>+</span></strong>
+            <strong><span ref={stat3Ref}>509</span><span>+</span></strong>
             <span>Happy customers</span>
           </div>
         </section>
@@ -1532,17 +1532,12 @@ function HomePage() {
             <h2>From land to<br />lived-in places.</h2>
             <p className="body-copy">A considered approach at every stage, shaped around people and the potential of a place.</p>
           </div>
-          <div
-            className="service-list"
-            onMouseMove={(e) => setCursorPos({ x: e.clientX, y: e.clientY })}
-          >
+          <div className="service-list">
             {services.map((service, index) => (
               <article
                 className={`service-item${activeService === index ? ' is-open' : ''}`}
                 key={service.title}
                 data-reveal
-                onMouseEnter={() => setHoveredService(service)}
-                onMouseLeave={() => setHoveredService(null)}
               >
                 <button
                   className="service-trigger"
@@ -1563,16 +1558,6 @@ function HomePage() {
               </article>
             ))}
           </div>
-          {hoveredService && (
-            <div
-              className="service-cursor-preview"
-              style={{ left: `${cursorPos.x}px`, top: `${cursorPos.y}px` }}
-              aria-hidden="true"
-            >
-              <img src={hoveredService.image} alt={hoveredService.project} />
-              <span className="service-preview-tag">{hoveredService.project}</span>
-            </div>
-          )}
         </section>
 
         <section className="projects section-shell" id="projects">
@@ -1621,8 +1606,8 @@ function HomePage() {
               <a className="contact-email" href="mailto:saimaha1000@gmail.com">
                 saimaha1000@gmail.com <ArrowUpRight size={15} />
               </a>
-              <a className="contact-whatsapp" href="https://wa.me/919094044052" target="_blank" rel="noreferrer">
-                <WhatsappLogo size={18} weight="fill" /> +91 90940 44052
+              <a className="contact-whatsapp" href="https://wa.me/919940407777" target="_blank" rel="noreferrer">
+                <WhatsappLogo size={18} weight="fill" /> +91 99404 07777
               </a>
             </div>
           </div>

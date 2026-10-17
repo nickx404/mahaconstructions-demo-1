@@ -61,16 +61,16 @@ const metrics = [
     note: 'Decades in Chennai',
   },
   {
-    value: '100+',
-    num: '100',
+    value: '509+',
+    num: '509',
     suffix: '+',
     tag: 'Trust',
     label: 'Customers',
     note: 'Satisfied families',
   },
   {
-    value: '50+',
-    num: '50',
+    value: '80+',
+    num: '80',
     suffix: '+',
     tag: 'Portfolio',
     label: 'Completed projects',
@@ -82,7 +82,7 @@ const metrics = [
     suffix: '%',
     tag: 'Precision',
     label: 'On-time delivery',
-    note: 'CMDA & RERA compliant',
+    note: 'CMDA compliant',
   },
 ];
 

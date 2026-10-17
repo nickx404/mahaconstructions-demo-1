@@ -92,9 +92,9 @@ export default function Footer({ backToTopTarget = '#top', className = '' }) {
         {/* Column 3: Get In Touch */}
         <div className="footer-links footer-contact-links">
           <span className="footer-label">Get in touch</span>
-          <a href="tel:+919094044052" className="footer-contact-item">
+          <a href="tel:+919940407777" className="footer-contact-item">
             <Phone size={15} aria-hidden="true" />
-            <span>+91 90940 44052</span>
+            <span>+91 99404 07777</span>
           </a>
           <a href="mailto:saimaha1000@gmail.com" className="footer-contact-item">
             <EnvelopeSimple size={15} aria-hidden="true" />
@@ -118,7 +118,7 @@ export default function Footer({ backToTopTarget = '#top', className = '' }) {
         <div className="footer-links footer-connect-links">
           <span className="footer-label">Connect</span>
           <a
-            href="https://wa.me/919094044052?text=Hello%20Maha%20Constructions,%20I%20would%20like%20to%20discuss%20a%20project"
+            href="https://wa.me/919940407777?text=Hello%20Maha%20Constructions,%20I%20would%20like%20to%20discuss%20a%20project"
             target="_blank"
             rel="noopener noreferrer"
             className="footer-contact-item"
@@ -162,7 +162,7 @@ export default function Footer({ backToTopTarget = '#top', className = '' }) {
 
         <span className="footer-compliance">
           <ShieldCheck size={15} aria-hidden="true" />
-          <span>CMDA & RERA Compliant</span>
+          <span>CMDA Compliant</span>
         </span>
 
         <a
