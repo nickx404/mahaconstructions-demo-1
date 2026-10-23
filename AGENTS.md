@@ -16,6 +16,7 @@ This is the Maha Constructions website application, under active development wit
 - `/gallery` is a company gallery separate from the project galleries. It features approved Bhoomi Pooja ceremonial photography, with Photo Gallery and Video Gallery toggles, interactive category filters, 3D card tilt physics, and a cinematic click-to-view media viewer.
 - `/joint-venture` is the dedicated landowner partnership page. Preserve its two-column architectural hero layout (editorial messaging and calls-to-action on the left, framed cinematic video card playing `public/videos/happy-family-home.mp4` at 0.75x speed on the right), trust strip, six partner-benefit items, six process stages, land-to-development approach, strength list, landowner enquiry form, testimonial placeholder, final CTA, and footer. Keep detailed commercial terms and partnership outcomes project-specific; customer portraits and testimonials remain placeholders until approved. The enquiry form is UI-only until a submission service is configured.
 - Keep navigation links between implemented and planned routes and preserve the current site header/footer patterns.
+- `src/site/Chatbot.jsx` is Maha, the shared English conversational website assistant mounted in `src/main.jsx`. It opens after 10 seconds when the visitor is not typing or viewing a menu/modal, supports keyboard dismissal, and offers Ongoing projects, Joint venture, and Request a callback in that order. Visitors can type questions at any point. `src/site/chatbotKnowledge.js` resolves supported topics locally with scripted replies and remembers the current project within the open conversation for follow-up questions. Shared projects and services live in `src/site/siteContent.js`, used by both the page views and the knowledge bank; update facts there to keep both aligned. Replies include relevant source-page links; `/projects?status=completed` opens the archive directly. Do not turn placeholders or unverified pricing, availability, finance, approval, or possession information into chatbot claims. Preserve the client-approved mission, joint-venture reply, and disclaimer. Collect only name, phone, and preferred location (optional for callbacks) or land location when the visitor requests an enquiry; let visitors ask informational questions during collection. Preserve the transcript when switching topics, and include the discussed project in callback form handoffs. `src/site/chatbotLead.js` transfers the draft through session storage rather than exposing personal details in URLs; Contact consumes and clears that draft and selects Joint Venture when appropriate. The chatbot does not submit leads or promise delivery. Contact currently labels sending as unconnected; connecting email and spreadsheet delivery requires a configured receiving service before enabling real submission or success claims.
 
 ## Maintaining This Guide
 
@@ -27,6 +28,7 @@ Update `AGENTS.md` in the same change whenever routes, page behavior, dependenci
 - `npm run dev` starts the Vite development server.
 - Use the local URL printed by Vite (typically `http://localhost:5173/`) to open the running application. Keep the dev server process alive while the user is reviewing the site.
 - `npm run build` creates the production bundle in `dist/`.
+- `node --test src/site/chatbotKnowledge.test.js` checks shared knowledge, follow-up context, archive links, and guarded claims without adding a test dependency.
 - `npm run preview` serves the production bundle locally for review.
 - Pushing to `main` builds and deploys the site through `.github/workflows/deploy.yml`. The workflow sets the repository base path and creates static entry points for client-side routes so they work when opened directly on GitHub Pages.
 
@@ -40,7 +42,7 @@ Use GSAP for existing scroll reveals and image motion, and preserve reduced-moti
 
 ## Testing and Review
 
-No automated test framework is configured yet. Before handing off a UI change, run `npm run build` and review the affected flow in the browser at desktop and mobile widths. Check navigation, carousel controls, service accordion behavior, and enquiry form states when those areas change. Add tests when a test framework is introduced; use descriptive names tied to the behavior under test.
+The chatbot knowledge checks use Node's built-in test runner; no separate automated test framework is configured. Before handing off a UI change, run `npm run build` and review the affected flow in the browser at desktop and mobile widths. Run the knowledge checks when chatbot replies or shared content change. Check navigation, carousel controls, service accordion behavior, and enquiry form states when those areas change. Use descriptive test names tied to the behavior under test.
 
 ## Commits and Pull Requests
 

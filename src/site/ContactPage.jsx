@@ -18,16 +18,33 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { sitePath } from './paths.js';
 import Footer from './Footer.jsx';
+import { readChatbotLead, clearChatbotLead, chatbotMessage } from './chatbotLead.js';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function ContactPage() {
+  const [chatbotLead, setChatbotLead] = useState(readChatbotLead);
   const [menuOpen, setMenuOpen] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [copiedField, setCopiedField] = useState(null);
   const [chennaiTime, setChennaiTime] = useState('');
-  const [selectedEnquiries, setSelectedEnquiries] = useState(['General Inquiry']);
-  const [formValues, setFormValues] = useState({ name: '', phone: '', email: '', message: '' });
+  const [selectedEnquiries, setSelectedEnquiries] = useState([chatbotLead?.intent === 'joint-venture' ? 'Joint Venture' : 'General Inquiry']);
+  const [formValues, setFormValues] = useState({ name: chatbotLead?.name || '', phone: chatbotLead?.phone || '', email: '', message: chatbotLead ? chatbotMessage(chatbotLead) : '' });
+
+  useEffect(() => {
+    clearChatbotLead();
+    const receiveChatbotLead = () => {
+      const lead = readChatbotLead();
+      if (!lead) return;
+      setChatbotLead(lead);
+      setFormValues((current) => ({ ...current, name: lead.name, phone: lead.phone, message: chatbotMessage(lead) }));
+      setSelectedEnquiries([lead.intent === 'joint-venture' ? 'Joint Venture' : 'General Inquiry']);
+      setSubmitted(false);
+      clearChatbotLead();
+    };
+    window.addEventListener('maha-chatbot-enquiry', receiveChatbotLead);
+    return () => window.removeEventListener('maha-chatbot-enquiry', receiveChatbotLead);
+  }, []);
 
   const pageRef = useRef(null);
   const heroRef = useRef(null);
@@ -353,6 +370,8 @@ export default function ContactPage() {
               <span className="form-req-pill">All fields required</span>
             </div>
 
+            {chatbotLead && <p className="chatbot-handoff-note">Your chatbot details are filled in below. Review them and add any further information to your enquiry.</p>}
+
             <div className="form-row contact-form-field">
               <label className="animated-input-group">
                 <span>Name</span>
@@ -444,11 +463,11 @@ export default function ContactPage() {
                 {submitted ? (
                   <>
                     <CheckCircle size={18} weight="fill" aria-hidden="true" />
-                    <span>Enquiry Received</span>
+                    <span>Enquiry prepared</span>
                   </>
                 ) : (
                   <>
-                    <span>Send enquiry</span>
+                    <span>Prepare enquiry</span>
                     <ArrowUpRight size={16} weight="bold" className="button-arrow-icon" aria-hidden="true" />
                   </>
                 )}
@@ -462,13 +481,13 @@ export default function ContactPage() {
                   <div className="success-banner-card">
                     <Sparkle size={18} weight="fill" className="success-sparkle" aria-hidden="true" />
                     <div>
-                      <strong>Thanks for reaching out!</strong>
-                      <p>Your message has been logged. Our engineering and project leads will review and respond promptly.</p>
+                      <strong>Your enquiry is prepared.</strong>
+                      <p>Online sending is not connected yet. Please use the phone or email details on this page to contact our team. Your details remain in the form.</p>
                     </div>
                   </div>
                 ) : (
                   <span className="preview-mode-tag">
-                    Direct enquiry channel • Replies within 24 hours
+                    Online sending is not connected yet. You can contact our team by phone or email.
                   </span>
                 )}
               </div>

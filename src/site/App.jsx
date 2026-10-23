@@ -34,6 +34,7 @@ import ContactPage from './ContactPage.jsx';
 import Footer from './Footer.jsx';
 import GalleryPage from './GalleryPage.jsx';
 import { sitePath, siteRoute } from './paths.js';
+import { services as serviceContent, ongoingProjects as ongoingContent, completedProjects as completedContent } from './siteContent.js';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -49,36 +50,7 @@ const heroSlides = [
   },
 ];
 
-const services = [
-  {
-    title: 'Land development',
-    detail:
-      'Thoughtful planning that brings out the long-term potential of every site, from first study to a place ready for its next chapter.',
-    image: sitePath('/images/completed-projects/maha-amogha.png'),
-    project: 'Maha Amogha',
-  },
-  {
-    title: 'Joint ventures',
-    detail:
-      'A clear, collaborative approach for landowners and partners who want to create enduring value together.',
-    image: sitePath('/images/completed-projects/maha-guru.png'),
-    project: 'Maha Guru',
-  },
-  {
-    title: 'Residential',
-    detail:
-      'Considered homes shaped around everyday rituals, natural light and the way people want to live.',
-    image: sitePath('/images/completed-projects/maha-amrutha.png'),
-    project: 'Maha Amrutha',
-  },
-  {
-    title: 'Commercial',
-    detail:
-      'Purposeful environments for businesses, communities and the activity that helps a neighbourhood thrive.',
-    image: sitePath('/images/completed-projects/maha-dhera.png'),
-    project: 'Maha Dhera',
-  },
-];
+const services = serviceContent.map((service) => ({ ...service, image: sitePath(service.image) }));
 
 const projects = [
   {
@@ -104,48 +76,8 @@ const projects = [
   },
 ];
 
-const ongoingProjects = [
-  {
-    slug: 'mahakuber-ananagar',
-    name: 'Maha Kuber',
-    location: 'Thirumangalam, Chennai',
-    details: ['Residential', '1 & 2 BHK', '540 - 960 sq.ft', 'Bank Loan Available'],
-    amenities: [
-      'Covered Car Parking',
-      '100% Vaastu',
-      'Rainwater Harvesting',
-      'Automatic Elevator',
-      'CCTV Surveillance Camera',
-      'Architect Designed',
-      '24/7 Water Supply',
-      'Three-Phase EB',
-    ],
-    fullAddress: 'Plot no 5, Thirumangalam Road, Post office st, Villivakkam, ch-49.',
-    intro: 'A perfect space for your perfect life.',
-    image: sitePath('/images/maha-kuber-elevation-expanded.png'),
-  },
-];
-
-const completedProjects = [
-  { name: 'Maha Jayam', image: sitePath('/images/completed-projects/maha-jayam.jpg') },
-  { name: 'Maha Dhanvin', image: sitePath('/images/completed-projects/maha-dhanvin.jpg') },
-  { name: 'Maha Amogha', image: sitePath('/images/completed-projects/maha-amogha.png') },
-  { name: 'Maha Guru', image: sitePath('/images/completed-projects/maha-guru.png') },
-  { name: 'Maha Amrutha', image: sitePath('/images/completed-projects/maha-amrutha.png') },
-  { name: 'Maha Dhera', image: sitePath('/images/completed-projects/maha-dhera.png') },
-  { name: 'Maha Seyon', image: sitePath('/images/completed-projects/maha-seyon.png') },
-  { name: 'Maha Eeshaan', image: sitePath('/images/completed-projects/maha-eeshaan.png') },
-  { name: 'Maha Dwaraka', image: sitePath('/images/completed-projects/maha-dwaraka.png') },
-  { name: 'Maha Dhanya', image: sitePath('/images/completed-projects/maha-dhanya.png') },
-  { name: 'Maha Senthil', image: sitePath('/images/completed-projects/maha-senthil.png') },
-  { name: 'Maha Vira', image: sitePath('/images/completed-projects/maha-vira.png') },
-  { name: 'Maha Viveha', image: sitePath('/images/completed-projects/maha-viveha.png') },
-  { name: 'Maha Krthi', image: sitePath('/images/completed-projects/maha-krthi.png') },
-  { name: 'Maha Ganapathy', image: sitePath('/images/completed-projects/maha-ganapathy.png') },
-  { name: 'Maha Varuna', image: sitePath('/images/completed-projects/maha-varuna.png') },
-  { name: 'Maha Guhan', image: sitePath('/images/completed-projects/maha-gugan.png') },
-  { name: 'Maha Velan', image: sitePath('/images/completed-projects/maha-velan.png') },
-];
+const ongoingProjects = ongoingContent.map((project) => ({ ...project, image: sitePath(project.image) }));
+const completedProjects = completedContent.map((project) => ({ ...project, image: sitePath(project.image) }));
 
 const googleReviews = [
   {
@@ -883,7 +815,7 @@ function OngoingProjectPage({ project }) {
 function ProjectsPage() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [projectStatus, setProjectStatus] = useState('ongoing');
+  const [projectStatus, setProjectStatus] = useState(() => new URLSearchParams(window.location.search).get('status') === 'completed' ? 'completed' : 'ongoing');
   const [selectedCompletedIndex, setSelectedCompletedIndex] = useState(null);
   const [zoomLevel, setZoomLevel] = useState(1);
 
