@@ -41,7 +41,10 @@ gsap.registerPlugin(ScrollTrigger);
 const heroSlides = [
   {
     desktop: sitePath('/images/hero-maha-kuber-ai-with-logo.jpg'),
-    alt: 'Maha Kuber luxury residential project at Thirumangalam, Chennai by Maha Constructions (with Logo)',
+    mobile: sitePath('/images/hero-maha-kuber-mobile.jpg'),
+    mobileHref: sitePath('/projects/mahakuber-ananagar'),
+    alt: 'Maha Kuber by Maha Constructions. Luxury homes in the heart of Thirumangalam.',
+    mobileLinkLabel: 'Explore Maha Kuber: luxury homes in the heart of Thirumangalam, Chennai. 1 & 2 BHK homes. View project details.',
   },
   {
     desktop: sitePath('/images/hero-joint-venture-banner.jpg'),
@@ -1152,6 +1155,7 @@ function ProjectsPage() {
 
 function HomePage() {
   const [activeSlide, setActiveSlide] = useState(0);
+  const [heroPaused, setHeroPaused] = useState(false);
   const [activeService, setActiveService] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -1175,11 +1179,12 @@ function HomePage() {
   }, []);
 
   useEffect(() => {
+    if (heroPaused) return undefined;
     heroTimer.current = window.setInterval(() => {
       setActiveSlide((current) => (current + 1) % heroSlides.length);
     }, 7000);
     return () => window.clearInterval(heroTimer.current);
-  }, []);
+  }, [heroPaused]);
 
   useEffect(() => {
     const media = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -1332,7 +1337,7 @@ function HomePage() {
 
   return (
     <>
-      <header className={`site-header${scrolled ? ' is-scrolled' : ''}${menuOpen ? ' menu-open' : ''}`}>
+      <header className={`site-header home-header${activeSlide === 1 ? ' is-jv' : ''}${scrolled ? ' is-scrolled' : ''}${menuOpen ? ' menu-open' : ''}`}>
         <a className="wordmark" href="#home" aria-label="Maha Constructions home" onClick={closeMenu}>
           <img src={sitePath('/images/maha-constructions-logo.png')} alt="" />
         </a>
@@ -1359,12 +1364,22 @@ function HomePage() {
       </header>
 
       <main id="home">
-        <section className="hero" aria-label="Featured Maha Constructions developments">
+        <section
+          className={`hero${activeSlide === 1 ? ' is-jv' : ''}`}
+          aria-label="Featured Maha Constructions developments"
+          onFocusCapture={() => setHeroPaused(true)}
+          onBlurCapture={(event) => {
+            if (!event.currentTarget.contains(event.relatedTarget)) setHeroPaused(false);
+          }}
+        >
           {heroSlides.map((slide, index) => (
-            <picture className={`hero-picture${activeSlide === index ? ' is-active' : ''}`} key={slide.desktop} aria-hidden={activeSlide !== index}>
-              {slide.mobile && <source media="(max-width: 700px)" srcSet={slide.mobile} />}
-              <img src={slide.desktop} alt={slide.alt} fetchPriority={index === 0 ? 'high' : 'auto'} />
-            </picture>
+            <div className={`hero-slide${index === 1 ? ' hero-slide-jv' : ''}${activeSlide === index ? ' is-active' : ''}`} key={slide.desktop} aria-hidden={activeSlide !== index} inert={activeSlide !== index}>
+              <picture className="hero-picture">
+                {slide.mobile && <source media="(max-width: 700px)" srcSet={slide.mobile} />}
+                <img src={slide.desktop} alt={slide.alt} fetchPriority={index === 0 ? 'high' : 'auto'} />
+              </picture>
+              {slide.mobileHref && <a className="hero-mobile-link" href={slide.mobileHref} aria-label={slide.mobileLinkLabel} />}
+            </div>
           ))}
           <div className="hero-controls" aria-label="Hero image controls">
             <button type="button" aria-label="Previous image" onClick={() => moveSlide(-1)}>
