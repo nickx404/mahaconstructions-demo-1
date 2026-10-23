@@ -6,7 +6,6 @@ import { answerQuestion } from './chatbotKnowledge.js';
 import { ongoingProjects } from './siteContent.js';
 
 const greeting = 'Hi, I’m Maha. How can I help you today?';
-const disclaimer = 'Disclaimer: Chatbot responses are for general information only. Prices, availability, project approvals, and possession details are subject to verification. Final terms are governed by applicable agreements and law. Please contact our authorized team for confirmation.';
 const initialReply = { text: greeting, choices: ['Ongoing projects', 'Joint venture', 'Request a callback'] };
 const initialLead = { name: '', phone: '', location: '' };
 
@@ -163,7 +162,6 @@ export default function Chatbot() {
           {error && <p id="maha-chat-error" className="maha-chat-error" role="alert">{error} {step === 'review' && <a href={sitePath('/contact#contact-form')}>Open contact form</a>}</p>}
           {collecting && <button type="button" className="maha-chat-text" onClick={() => ask('Cancel')}>Keep browsing instead</button>}
         </form>
-        <footer className="maha-chat-footer"><details><summary>Disclaimer</summary><p>{disclaimer}</p></details><span>Automated assistant</span></footer>
       </section>}
       <button className={`maha-chat-launcher${open ? ' is-open' : ''}`} type="button" ref={launcher} aria-label={open ? 'Minimize chatbot' : 'Open Maha Constructions chatbot'} aria-controls="maha-chat-panel" aria-expanded={open} onClick={() => { manualOpen.current = true; if (open) close(); else setOpen(true); }}>
         {open ? <X size={23} aria-hidden="true" /> : <><ChatCircleDots size={24} weight="fill" aria-hidden="true" /><span>Ask Maha</span></>}
