@@ -9,6 +9,7 @@ export function readChatbotLead() {
       name: lead.name.slice(0, 80),
       phone: lead.phone.slice(0, 24),
       location: lead.location.slice(0, 160),
+      email: typeof lead.email === 'string' ? lead.email.slice(0, 254) : '',
       intent: lead.intent,
       projectName: typeof lead.projectName === 'string' ? lead.projectName.slice(0, 100) : '',
     };

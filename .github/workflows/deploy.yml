@@ -26,6 +26,8 @@ jobs:
       - uses: actions/configure-pages@v5
       - run: npm ci
       - run: npm run build
+        env:
+          VITE_CHATBOT_LEAD_URL: ${{ vars.VITE_CHATBOT_LEAD_URL }}
       - name: Prepare client side routes
         run: |
           for route in about about-2 about-us contact gallery joint-venture projects projects/ongoing-project-1 projects/ongoing-project-2 projects/ongoing-project-3 projects/mahakuber-ananagar; do

@@ -29,7 +29,7 @@ export default function ContactPage() {
   const [copiedField, setCopiedField] = useState(null);
   const [chennaiTime, setChennaiTime] = useState('');
   const [selectedEnquiries, setSelectedEnquiries] = useState([chatbotLead?.intent === 'joint-venture' ? 'Joint Venture' : 'General Inquiry']);
-  const [formValues, setFormValues] = useState({ name: chatbotLead?.name || '', phone: chatbotLead?.phone || '', email: '', message: chatbotLead ? chatbotMessage(chatbotLead) : '' });
+  const [formValues, setFormValues] = useState({ name: chatbotLead?.name || '', phone: chatbotLead?.phone || '', email: chatbotLead?.email || '', message: chatbotLead ? chatbotMessage(chatbotLead) : '' });
 
   useEffect(() => {
     clearChatbotLead();
@@ -37,7 +37,7 @@ export default function ContactPage() {
       const lead = readChatbotLead();
       if (!lead) return;
       setChatbotLead(lead);
-      setFormValues((current) => ({ ...current, name: lead.name, phone: lead.phone, message: chatbotMessage(lead) }));
+      setFormValues((current) => ({ ...current, name: lead.name, phone: lead.phone, email: lead.email || current.email, message: chatbotMessage(lead) }));
       setSelectedEnquiries([lead.intent === 'joint-venture' ? 'Joint Venture' : 'General Inquiry']);
       setSubmitted(false);
       clearChatbotLead();
