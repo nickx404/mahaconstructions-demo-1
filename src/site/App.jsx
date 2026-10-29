@@ -1172,10 +1172,19 @@ function HomePage() {
   };
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 32);
-    handleScroll();
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    const updateHeader = () => {
+      const visible = window.scrollY > 32;
+      setScrolled(visible);
+      if (!visible) {
+        setMenuOpen(false);
+        if (document.activeElement?.closest('.home-header')) document.activeElement.blur();
+      }
+    };
+    updateHeader();
+    window.addEventListener('scroll', updateHeader, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', updateHeader);
+    };
   }, []);
 
   useEffect(() => {
@@ -1337,7 +1346,7 @@ function HomePage() {
 
   return (
     <>
-      <header className={`site-header home-header${activeSlide === 1 ? ' is-jv' : ''}${scrolled ? ' is-scrolled' : ''}${menuOpen ? ' menu-open' : ''}`}>
+      <header inert={!scrolled} aria-hidden={!scrolled} className={`site-header home-header${activeSlide === 1 ? ' is-jv' : ''}${scrolled ? ' is-scrolled' : ''}${menuOpen ? ' menu-open' : ''}`}>
         <a className="wordmark" href="#home" aria-label="Maha Constructions home" onClick={closeMenu}>
           <img src={sitePath('/images/maha-constructions-logo.png')} alt="" />
         </a>

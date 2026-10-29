@@ -953,7 +953,7 @@ img { display: block; max-width: 100%; }
   .main-nav .nav-enquiry { gap: 9px; margin-left: 2px; padding: 14px 22px; border: 1.5px solid var(--matcha-green); background: var(--matcha-green); color: white; border-radius: 12px; font-size: 14px; font-weight: 700; transition: background .2s ease, border-color .2s ease; }
 .main-nav .nav-enquiry:hover { background: var(--dark-green); border-color: var(--dark-green); color: white; }
   .home-header, .home-header.is-scrolled, .home-header.menu-open { height: 68px; color: var(--deep); background: rgba(250,250,246,.96); }
-  .hero { height: auto; min-height: 0; max-height: none; margin-top: 68px; aspect-ratio: 3 / 5; background: #FAFAF6; }
+  .hero { height: auto; min-height: 0; max-height: none; margin-top: 0; aspect-ratio: 3 / 5; background: #FAFAF6; }
   .hero-picture img { object-fit: contain; object-position: center; }
   .hero-slide.is-active img { animation: none; }
   .hero-mobile-link { position: absolute; inset: 0; z-index: 1; display: block; }
@@ -2790,4 +2790,24 @@ img { display: block; max-width: 100%; }
   .jv-closing > div { width: min(100%, 320px); }
   .jv-closing .button { width: 100%; }
   .jv-contact-links { gap: 13px !important; font-size: 14px !important; }
+}
+
+/* Homepage navigation appears after a small scroll on desktop and mobile. */
+.site-header.home-header { transition: opacity .2s ease, transform .25s ease, height .3s ease, background .3s ease; }
+.site-header.home-header:not(.is-scrolled) { opacity: 0; visibility: hidden; pointer-events: none; transform: translateY(-100%); }
+.site-header.home-header.is-scrolled { opacity: 1; visibility: visible; transform: translateY(0); }
+.site-header.home-header .main-nav .nav-enquiry,
+.site-header.home-header.is-scrolled .main-nav .nav-enquiry { border: 1px solid #174A2A; border-radius: 0; background: #fff; color: #174A2A; transition: background .2s ease, color .2s ease, transform .2s ease; }
+.site-header.home-header .main-nav .nav-enquiry:hover,
+.site-header.home-header .main-nav .nav-enquiry:focus-visible,
+.site-header.home-header.is-scrolled .main-nav .nav-enquiry:hover,
+.site-header.home-header.is-scrolled .main-nav .nav-enquiry:focus-visible { border-color: #174A2A; background: #174A2A; color: #fff; transform: none; }
+.site-header.home-header .main-nav .nav-enquiry:focus-visible { outline: 2px solid #174A2A; outline-offset: 4px; }
+.site-header.home-header .main-nav .nav-enquiry:active,
+.site-header.home-header.is-scrolled .main-nav .nav-enquiry:active { background: #174A2A; color: #fff; transform: scale(.98); }
+.home-header .pulse-beacon { background: currentColor; }
+.home-header .pulse-beacon::before { background: currentColor; opacity: .35; }
+@media (prefers-reduced-motion: reduce) {
+  .site-header.home-header, .site-header.home-header .main-nav .nav-enquiry { transition: none; }
+  .home-header .pulse-beacon::before { animation: none; }
 }
